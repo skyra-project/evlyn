@@ -1,0 +1,34 @@
+{
+  "name": "shyna",
+  "version": "0.0.1",
+  "description": "Monitor and Reviver",
+  "main": "src/shyna.js",
+  "scripts": {
+    "start": "node --experimental-modules src/shyna.mjs",
+    "test": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kyranet/Shyna.git"
+  },
+  "keywords": [
+    "discord.js",
+    "klasa",
+    "reviver",
+    "monitor"
+  ],
+  "author": "kyraNET",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/kyranet/Shyna/issues"
+  },
+  "homepage": "https://github.com/kyranet/Shyna#readme",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "ipc-link": "0.0.1",
+    "klasa": "github:dirigeants/klasa#esm"
+  },
+  "devDependencies": {
+    "eslint-config-klasa": "github:dirigeants/klasa-lint"
+  }
+}
