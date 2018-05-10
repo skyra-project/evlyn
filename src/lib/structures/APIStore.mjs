@@ -1,5 +1,7 @@
-const { Store, util: { isObject } } = require('klasa');
-const API = require('./API');
+import { Store, util } from 'klasa';
+import API from './API';
+
+const { isObject } = util;
 
 const NOT_FOUND = { success: false, response: null, type: 'NO_MATCH', code: 404 };
 const DEFAULTS_SUCCESS = [['success', true], ['response', null], ['type', 'SUCCESS'], ['code', 200]];

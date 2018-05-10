@@ -1,4 +1,4 @@
-const { Piece } = require('klasa');
+import { Piece } from 'klasa';
 
 class API extends Piece {
 
