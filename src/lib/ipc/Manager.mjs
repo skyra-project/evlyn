@@ -51,27 +51,36 @@ class Manager {
 		return this._sneyraUser;
 	}
 
-	async checkStatus() {
-		const [skyraStatus, sneyraStatus] = this.client.dev ? [[0], [0]] : await Promise.all([
-			this.server.send('skyra-dashboard', { route: 'status' }),
-			this.server.send('sneyra-dashboard', { route: 'status' })
+	checkStatus() {
+		Promise.all([
+			this._checkStatus('skyra-dashboard', 'skyra', this.skyraUser.presence),
+			this._checkStatus('sneyra-dashboard', 'sneyra', this.sneyraUser.presence)
 		]);
+	}
 
-		const [skyraPresence, sneyraPresence] = [
-			this.skyraUser.presence,
-			this.sneyraUser.presence
-		];
-
-		// Get the current statuses
-		const [cacheSkyra, cacheSneyra] = [this.statuses.get('skyra'), this.statuses.get('sneyra')];
+	async _checkStatus(route, name, presence) {
+		const { response: status } = this.client.dev ? { response: [0] } : await this.server.send(route);
+		const cacheStatus = this.statuses.get(name);
 
 		// Update the IPC status
-		removeFirstAndAdd(cacheSkyra.ipcLink, skyraStatus);
-		removeFirstAndAdd(cacheSneyra.ipcLink, sneyraStatus);
-
+		removeFirstAndAdd(cacheStatus.ipcLink, status);
 		// Update the Discord status
-		removeFirstAndAdd(cacheSkyra.status, skyraPresence.status);
-		removeFirstAndAdd(cacheSneyra.status, sneyraPresence.status);
+		removeFirstAndAdd(cacheStatus.status, presence.status);
+
+		const reconnectShards = this.checkShardsStatus(status);
+		if (reconnectShards.length) this.server.send(route, { route: 'reconnect', reconnectShards });
+	}
+
+	checkShardsStatus(statuses) {
+		const output = [];
+
+		for (let i = 0; i < statuses.length; i++) {
+			const lastStatus = statuses[i];
+			// If status is IDLE or DISCONNECTED, push the shard to reconnect
+			if (lastStatus === 3 || lastStatus === 5) output.push(i);
+		}
+
+		return output;
 	}
 
 }
