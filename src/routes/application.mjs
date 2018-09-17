@@ -1,7 +1,7 @@
 import { Route as KlasaRoute } from 'klasa-dashboard-hooks';
 import { Duration } from 'klasa';
 
-module.exports = class Route extends KlasaRoute {
+export default class Route extends KlasaRoute {
 
 	constructor(client, store, file, core) {
 		super(client, store, file, core, { route: 'application', enabled: false });
@@ -21,4 +21,4 @@ module.exports = class Route extends KlasaRoute {
 		}));
 	}
 
-};
+}

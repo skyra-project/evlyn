@@ -5,3 +5,9 @@ export function removeFirstAndAdd(array, value) {
 
 	array[i - 1] = value;
 }
+
+export function createStatus(length) {
+	const output = [];
+	for (let i = 0; i < length; i++) output.push(null);
+	return output;
+}

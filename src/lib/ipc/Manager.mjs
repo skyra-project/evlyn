@@ -1,5 +1,6 @@
 import { Node } from 'veza';
-import { removeFirstAndAdd } from '../util/util';
+import { removeFirstAndAdd, createStatus } from '../util/util';
+import { PRESENCE_STATUS } from '../util/constants';
 
 export default class Manager extends Node {
 
@@ -40,13 +41,15 @@ export default class Manager extends Node {
 		 * @since 0.0.1
 		 * @type {Map<string, ManagerShardStatus>}
 		 */
-		this.statuses = new Map()
-			.set('skyra', { ipcLink: new Array(30).fill(0), status: new Array(30).fill(0) })
-			.set('sneyra', { ipcLink: new Array(30).fill(0), status: new Array(30).fill(0) });
+		this.status = new Map()
+			.set('skyra', { ipcLink: createStatus(30), status: createStatus(30) })
+			.set('sneyra', { ipcLink: createStatus(30), status: createStatus(30) })
+			.set('smii', { ipcLink: createStatus(30), status: createStatus(30) });
 
 		Object.defineProperty(this, '_timeout', { value: this.client.setInterval(this.checkStatus.bind(this), 60000) });
 		Object.defineProperty(this, '_skyraUser', { value: null, writable: true });
 		Object.defineProperty(this, '_sneyraUser', { value: null, writable: true });
+		Object.defineProperty(this, '_smiiUser', { value: null, writable: true });
 	}
 
 	get skyraUser() {
@@ -59,19 +62,25 @@ export default class Manager extends Node {
 		return this._sneyraUser;
 	}
 
+	get smiiUser() {
+		if (!this._smiiUser) this._smiiUser = this.client.users.get('419828209966776330');
+		return this._smiiUser;
+	}
+
 	checkStatus() {
 		this._checkStatus('skyra-dashboard', 'skyra', this.skyraUser.presence);
 		this._checkStatus('sneyra-dashboard', 'sneyra', this.sneyraUser.presence);
+		this._checkStatus('smii-dashboard', 'smii', this.smiiUser.presence);
 	}
 
 	async _checkStatus(route, name, presence) {
 		const { response: status } = this.client.dev ? { response: [0] } : await this.sendTo(route, { route: 'status' });
-		const cacheStatus = this.statuses.get(name);
+		const cacheStatus = this.status.get(name);
 
 		// Update the IPC status
 		removeFirstAndAdd(cacheStatus.ipcLink, status);
 		// Update the Discord status
-		removeFirstAndAdd(cacheStatus.status, presence.status);
+		removeFirstAndAdd(cacheStatus.status, PRESENCE_STATUS.indexOf(presence.status));
 
 		const reconnectShards = this.checkShardsStatus(status);
 		if (reconnectShards.length) this.sendTo(route, { route: 'reconnect', reconnectShards });
@@ -87,6 +96,14 @@ export default class Manager extends Node {
 		}
 
 		return output;
+	}
+
+	toJSON() {
+		return {
+			skyra: this.status.get('skyra'),
+			sneyra: this.status.get('sneyra'),
+			smii: this.status.get('smii')
+		};
 	}
 
 }

@@ -4,8 +4,8 @@ import Shyna from './lib/Shyna';
 Shyna.defaultPermissionLevels.add(0, (client, message) => client.owner === message.author);
 
 // Load klasa-dashboard-hooks
-import KlasaDashboardHooks from 'klasa-dashboard-hooks';
-Shyna.use(KlasaDashboardHooks);
+import { DashboardClient } from 'klasa-dashboard-hooks';
+Shyna.use(DashboardClient);
 
 // eslint-disable-next-line no-process-env
 const DEV = 'DEV' in process.env ? process.env.DEV === 'true' : !('PM2_HOME' in process.env);
