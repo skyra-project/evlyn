@@ -1,7 +1,7 @@
-import { Server } from 'ipc-link';
+import { Node } from 'veza';
 import { removeFirstAndAdd } from '../util/util';
 
-class Manager {
+export default class Manager extends Node {
 
 	/**
 	 * @typedef {Object} ManagerShardStatus
@@ -10,22 +10,30 @@ class Manager {
 	 */
 
 	constructor(client) {
+		super('shyna');
+
 		this.client = client;
 
 		/**
 		 * The IPC server that manages this link
 		 * @since 0.0.1
-		 * @type {Server}
+		 * @type {Node}
 		 */
-		this.server = new Server('shyna', { retry: 1500, silent: true })
-			.on('message', (message) => this.client.emit('apiMessage', message))
-			.on('error', (error) => this.client.emit('error', error))
-			.on('connect', () => this.client.emit('verbose', 'IPC Channel Connected'))
-			.on('disconnect', () => this.client.emit('warn', 'IPC Channel Disconnected'))
-			.on('destroy', () => this.client.emit('warn', 'IPC Channel Destroyed'))
-			.on('socket.disconnected', (socket, destroyedSocketID) => this.client.emit('verbose', `The Socket ${destroyedSocketID} has disconnected!`))
-			.once('start', () => console.log(`[IPC] Successfully started`))
-			.start();
+		this
+			.on('client.identify', (node) => this.client.emit('verbose', `[IPC] Client Connected: ${node.name}`))
+			.on('client.disconnect', (node) => this.client.emit('warn', `[IPC] Client Disconnected: ${node.name}`))
+			.on('client.destroy', (node) => this.client.emit('warn', `[IPC] Client Destroyed: ${node.name}`))
+			.on('server.ready', (server) => this.client.emit('verbose', `[IPC] Client Ready: Named ${server.name}`))
+			.on('error', (error, node) => this.client.emit('error', `[IPC] Error from ${node.name}: ${error}`))
+			.on('message', (message) => {
+				const reply = message.reply.bind(message);
+				this.client.ipcPieces.run(message)
+					.then(reply)
+					.catch(reply);
+			});
+
+		this.serve(8989)
+			.catch((error) => this.client.emit('error', `[IPC] Disconnected! ${error}`));
 
 		/**
 		 * The cached statuses for both processes
@@ -36,7 +44,7 @@ class Manager {
 			.set('skyra', { ipcLink: new Array(30).fill(0), status: new Array(30).fill(0) })
 			.set('sneyra', { ipcLink: new Array(30).fill(0), status: new Array(30).fill(0) });
 
-		Object.defineProperty(this, '_timeout', { value: setInterval(this.checkStatus.bind(this), 60000) });
+		Object.defineProperty(this, '_timeout', { value: this.client.setInterval(this.checkStatus.bind(this), 60000) });
 		Object.defineProperty(this, '_skyraUser', { value: null, writable: true });
 		Object.defineProperty(this, '_sneyraUser', { value: null, writable: true });
 	}
@@ -52,14 +60,12 @@ class Manager {
 	}
 
 	checkStatus() {
-		Promise.all([
-			this._checkStatus('skyra-dashboard', 'skyra', this.skyraUser.presence),
-			this._checkStatus('sneyra-dashboard', 'sneyra', this.sneyraUser.presence)
-		]);
+		this._checkStatus('skyra-dashboard', 'skyra', this.skyraUser.presence);
+		this._checkStatus('sneyra-dashboard', 'sneyra', this.sneyraUser.presence);
 	}
 
 	async _checkStatus(route, name, presence) {
-		const { response: status } = this.client.dev ? { response: [0] } : await this.server.send(route);
+		const { response: status } = this.client.dev ? { response: [0] } : await this.sendTo(route, { route: 'status' });
 		const cacheStatus = this.statuses.get(name);
 
 		// Update the IPC status
@@ -68,7 +74,7 @@ class Manager {
 		removeFirstAndAdd(cacheStatus.status, presence.status);
 
 		const reconnectShards = this.checkShardsStatus(status);
-		if (reconnectShards.length) this.server.send(route, { route: 'reconnect', reconnectShards });
+		if (reconnectShards.length) this.sendTo(route, { route: 'reconnect', reconnectShards });
 	}
 
 	checkShardsStatus(statuses) {
@@ -84,5 +90,3 @@ class Manager {
 	}
 
 }
-
-export default Manager;

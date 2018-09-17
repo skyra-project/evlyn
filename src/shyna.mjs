@@ -1,7 +1,14 @@
 import { TOKEN } from '../config';
-import Shyna from './lib/Shyna.mjs';
+import Shyna from './lib/Shyna';
 
 Shyna.defaultPermissionLevels.add(0, (client, message) => client.owner === message.author);
+
+// Load klasa-dashboard-hooks
+import KlasaDashboardHooks from 'klasa-dashboard-hooks';
+Shyna.use(KlasaDashboardHooks);
+
+// eslint-disable-next-line no-process-env
+const DEV = 'DEV' in process.env ? process.env.DEV === 'true' : !('PM2_HOME' in process.env);
 
 new Shyna({
 	disabledEvents: [
@@ -23,6 +30,6 @@ new Shyna({
 	pieceDefaults: { commands: { deletable: true, promptLimit: 5, quotedStringSupport: true } },
 	prefix: 'sh!',
 	presence: { activity: { name: 'and monitoring...', type: 'WATCHING' } },
-	regexPrefix: /^(hey )?shyna(,|!)/i,
-	dev: true
+	regexPrefix: /^(hey )?shyna[,!]/i,
+	dev: DEV
 }).login(TOKEN);

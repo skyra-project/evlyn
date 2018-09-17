@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "esnext",
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"noEmit": true,
+		"forceConsistentCasingInFileNames": true,
+		"checkJs": true,
+		"moduleResolution": "node",
+		"strict": true
+	},
+	"files": [
+		"src/index.d.ts"
+	]
+}

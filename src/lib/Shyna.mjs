@@ -1,5 +1,5 @@
 import { KlasaClient } from 'klasa';
-import Manager from './ipc/Manager.mjs';
+import Manager from './ipc/Manager';
 
 export default class Shyna extends KlasaClient {
 
