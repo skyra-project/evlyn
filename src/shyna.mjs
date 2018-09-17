@@ -22,6 +22,7 @@ new Shyna({
 		'MESSAGE_REACTION_REMOVE_ALL'
 	],
 	commandEditing: true,
+	dashboardHooks: { port: 9010 },
 	consoleEvents: { verbose: true },
 	console: { useColor: true, utc: true },
 	messageCacheLifetime: 120,
