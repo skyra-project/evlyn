@@ -20,7 +20,7 @@
     "pm2:start": "pm2 start start.js --node-args=\"--experimental-modules\" --name=\"Shyna\"",
     "pm2:stop": "pm2 stop Shyna",
     "start": "node --experimental-modules src/shyna.mjs",
-    "test": "eslint src"
+    "test": "eslint --ext .mjs src"
   },
   "repository": {
     "type": "git",
