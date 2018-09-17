@@ -74,7 +74,7 @@ export default class Manager extends Node {
 	}
 
 	async _checkStatus(route, name, presence) {
-		const { response: status } = this.client.dev ? { response: [0] } : await this.sendTo(route, { route: 'status' });
+		const { response: status } = this.client.dev ? { response: null } : await this.sendTo(route, { route: 'status' });
 		const cacheStatus = this.status.get(name);
 
 		// Update the IPC status
@@ -82,8 +82,9 @@ export default class Manager extends Node {
 		// Update the Discord status
 		removeFirstAndAdd(cacheStatus.status, PRESENCE_STATUS.indexOf(presence.status));
 
+		if (!status) return;
 		const reconnectShards = this.checkShardsStatus(status);
-		if (reconnectShards.length) this.sendTo(route, { route: 'reconnect', reconnectShards });
+		if (reconnectShards.length) await this.sendTo(route, { route: 'reconnect', reconnectShards }, { receptive: false });
 	}
 
 	checkShardsStatus(statuses) {
