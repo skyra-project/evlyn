@@ -1,16 +1,24 @@
 {
+	"compileOnSave": true,
 	"compilerOptions": {
+        "declaration": true,
+		"lib": ["esnext"],
 		"module": "commonjs",
-		"target": "esnext",
-		"noImplicitAny": true,
-		"strictNullChecks": true,
-		"noEmit": true,
-		"forceConsistentCasingInFileNames": true,
-		"checkJs": true,
-		"moduleResolution": "node",
-		"strict": true
+		"outDir": "./dist",
+		"types": ["node"],
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "target": "esnext"
 	},
-	"files": [
-		"src/index.d.ts"
+	"exclude": [
+		"node_modules",
+		"bin",
+		"examples",
+		"scripts"
+	],
+	"include": [
+		"./src/**/*"
 	]
 }

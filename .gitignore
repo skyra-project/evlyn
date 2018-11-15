@@ -1,4 +1,5 @@
 # Ignore a blackhole and the folder for development
+dist/
 node_modules/
 .vs/
 
@@ -7,7 +8,7 @@ src/bwd/provider/
 src/bwd/backups/
 
 # Ignore the config file (contains sensitive information such as tokens)
-config.mjs
+config.ts
 
 # Ignore heapsnapshot and log files
 *.heapsnapshot

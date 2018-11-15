@@ -1,30 +1,24 @@
 {
-  "name": "shyna",
-  "version": "0.0.1",
+  "name": "evlyn",
+  "version": "1.0.0",
   "description": "Monitor and Reviver",
-  "main": "src/shyna.js",
+  "main": "dist/src/Evlyn.js",
   "scripts": {
-    "deps:install": "yarn install",
-    "deps:install-production": "yarn install --production",
-    "deps:update-unix": "rm -rf node_modules && rm yarn.lock && yarn install",
-    "deps:update-windows": "rd -r -Force node_modules && rm yarn.lock && yarn install",
-    "deps:update-unix-production": "rm -rf node_modules && rm yarn.lock && yarn install --production",
-    "deps:update-windows-production": "rd -r -Force node_modules && rm yarn.lock && yarn install --production",
-    "dev:unix": "DEV=true node --experimental-modules src/Shyna.js",
-    "dev:windows": "$env:DEV=\"true\"; node --experimental-modules src/Shyna.js",
-    "lint": "eslint --fix src",
-    "pm2:delete": "pm2 delete Shyna",
-    "pm2:logs": "pm2 logs Shyna --lines=200",
-    "pm2:restart": "pm2 restart Shyna",
-    "pm2:start-harmony": "pm2 start start.js --node-args=\"--experimental-modules --harmony\" --name=\"Shyna\"",
-    "pm2:start": "pm2 start start.js --node-args=\"--experimental-modules\" --name=\"Shyna\"",
-    "pm2:stop": "pm2 stop Shyna",
-    "start": "node --experimental-modules src/shyna.mjs",
-    "test": "eslint --ext .mjs src"
+    "lint": "tslint -p tsconfig.json src/**/*.ts --fix",
+    "pm2:delete": "pm2 delete Evlyn",
+    "pm2:logs": "pm2 logs Evlyn --lines=200",
+    "pm2:restart": "pm2 restart Evlyn",
+    "pm2:start-harmony": "pm2 start dist/src/Evlyn.js --node-args=\"--harmony\" --name=\"Evlyn\"",
+    "pm2:start": "pm2 start dist/src/Evlyn.js --name=\"Evlyn\"",
+    "pm2:stop": "pm2 stop Evlyn",
+    "start": "node dist/src/Evlyn.js",
+    "test": "tslint -p tsconfig.json src/**/*.ts",
+    "update": "yarn",
+    "compile": "tsc -p ."
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kyranet/Shyna.git"
+    "url": "git+ssh://git@github.com/kyranet/Evlyn.git"
   },
   "keywords": [
     "discord.js",
@@ -32,12 +26,16 @@
     "reviver",
     "monitor"
   ],
-  "author": "kyraNET",
+  "contributors": [
+    "kyranet"
+  ],
+  "private": true,
+  "author": "kyranet <kyradiscord@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/kyranet/Shyna/issues"
+    "url": "https://github.com/kyranet/Evlyn/issues"
   },
-  "homepage": "https://github.com/kyranet/Shyna#readme",
+  "homepage": "https://github.com/kyranet/Evlyn#readme",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
     "klasa": "github:dirigeants/klasa#esm",
@@ -45,8 +43,7 @@
     "veza": "0.3.2"
   },
   "devDependencies": {
-    "@types/node": "^10.10.1",
-    "eslint": "^5.6.0",
+    "@types/node": "^10.12.5",
     "eslint-config-klasa": "github:dirigeants/klasa-lint",
     "tslint": "^5.11.0",
     "typescript": "^3.0.3"
