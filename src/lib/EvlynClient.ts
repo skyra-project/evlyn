@@ -1,8 +1,8 @@
-import { PresenceStatus } from 'discord.js';
 import { Colors, util } from 'klasa';
 import { DashboardClient, DashboardClientOptions } from 'klasa-dashboard-hooks';
 import { Node } from 'veza';
 import { IPCMonitorStore } from './structures/IPCMonitorStore';
+import { PresenceType } from './util/constants';
 import { createArray } from './util/util';
 
 const g = new Colors({ text: 'green' }).format('[IPC   ]');
@@ -19,7 +19,7 @@ export class EvlynClient extends DashboardClient {
 		evlyn: createArray<ClientStatistics[]>(60, () => []),
 		skyra: createArray<ClientStatistics[]>(60, () => [])
 	};
-	public ipc = new Node('evlyn')
+	public ipc = new Node('evlyn-master')
 		.on('client.identify', (client) => { this.console.log(`${g} Client Connected: ${client.name}`); })
 		.on('client.disconnect', (client) => { this.console.log(`${y} Client Disconnected: ${client.name}`); })
 		.on('client.destroy', (client) => { this.console.log(`${y} Client Destroyed: ${client.name}`); })
@@ -45,7 +45,7 @@ export type EvlynClientOptions = DashboardClientOptions & { dev?: boolean };
  * The client statistics for each shard
  */
 export type ClientStatistics = {
-	presence: PresenceStatus;
+	presence: PresenceType;
 	status: WebsocketStatus;
 	heapUsed: number;
 	heapTotal: number;
