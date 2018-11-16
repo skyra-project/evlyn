@@ -1,0 +1,44 @@
+// Remove `.example` from the file extension to configure Evlyn
+
+import { EvlynClientOptions } from './src/lib/EvlynClient';
+
+// eslint-disable-next-line no-process-env
+const DEV = 'DEV' in process.env ? process.env.DEV === 'true' : !('PM2_HOME' in process.env);
+
+export const CLIENT_OPTIONS: EvlynClientOptions = {
+	commandEditing: true,
+	commandMessageLifetime: 200,
+	console: { useColor: true, utc: true },
+	consoleEvents: { verbose: true, debug: true },
+	createPiecesFolders: false,
+	customPromptDefaults: { limit: 5 },
+	dashboardHooks: { port: 8283 },
+	dev: DEV,
+	disabledEvents: [
+		'GUILD_BAN_ADD',
+		'GUILD_BAN_REMOVE',
+		'TYPING_START',
+		'CHANNEL_PINS_UPDATE',
+		'PRESENCE_UPDATE',
+		'USER_UPDATE',
+		'MESSAGE_REACTION_ADD',
+		'MESSAGE_REACTION_REMOVE',
+		'MESSAGE_REACTION_REMOVE_ALL',
+		'VOICE_SERVER_UPDATE',
+		'VOICE_STATE_UPDATE'
+	],
+	messageCacheLifetime: 120,
+	messageCacheMaxSize: 25,
+	messageSweepInterval: 300,
+	pieceDefaults: {
+		commands: { deletable: true, promptLimit: 5, quotedStringSupport: true },
+		ipcMonitors: { enabled: true }
+	},
+	prefix: 'e!',
+	presence: { activity: { name: 'and monitoring...', type: 'WATCHING' } },
+	regexPrefix: /evlyn[,!]/i,
+	slowmode: 1000,
+	slowmodeAggressive: true,
+	typing: true
+};
+export const TOKEN = 'TOKEN GOES HERE';
