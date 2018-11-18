@@ -16,8 +16,10 @@ export default class extends Task {
 	private _interval = this.create();
 
 	public async run(): Promise<void> {
-		const data = await this.client.ipc.sendTo<StatisticsResults[]>('ny-api', ['socketStatistics', null]);
-		for (const entry of data) {
+		const [broadcastSuccess, data] = await this.client.ipc.sendTo<[0 | 1, [0 | 1, StatisticsResults][]]>('ny-api', ['socketStatistics', null]);
+		if (!broadcastSuccess) return;
+		for (const [success, entry] of data) {
+			if (!success) continue;
 			if (entry.name in this.client.statistics) {
 				if (!entry.name) continue;
 				const user = this.client.users.get(this._ids[entry.name]);
