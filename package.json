@@ -40,7 +40,7 @@
     "discord.js": "github:discordjs/discord.js",
     "klasa": "github:dirigeants/klasa#esm",
     "klasa-dashboard-hooks": "github:dirigeants/klasa-dashboard-hooks",
-    "veza": "0.3.2"
+    "veza": "0.3.3"
   },
   "devDependencies": {
     "@types/node": "^10.12.5",
