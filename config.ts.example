@@ -9,7 +9,7 @@ export const CLIENT_OPTIONS: EvlynClientOptions = {
 	commandEditing: true,
 	commandMessageLifetime: 200,
 	console: { useColor: true, utc: true },
-	consoleEvents: { verbose: true, debug: true },
+	consoleEvents: { verbose: true },
 	createPiecesFolders: false,
 	customPromptDefaults: { limit: 5 },
 	dashboardHooks: { port: 8283 },
