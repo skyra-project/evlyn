@@ -16,9 +16,10 @@ export default class extends Task {
 	private _interval = this.create();
 
 	public async run(): Promise<void> {
-		const data = await this.client.ipc.sendTo<StatisticsResults[]>('ny-api', ['socketsStatistics', null]);
+		const data = await this.client.ipc.sendTo<StatisticsResults[]>('ny-api', ['socketStatistics', null]);
 		for (const entry of data) {
 			if (entry.name in this.client.statistics) {
+				if (!entry.name) continue;
 				const user = this.client.users.get(this._ids[entry.name]);
 				if (user) entry.presence = this.parseStatus(user.presence.status);
 				// Remove first element and add to the statistics table
