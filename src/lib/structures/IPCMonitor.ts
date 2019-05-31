@@ -15,6 +15,6 @@ export abstract class IPCMonitor extends Piece {
 	// @ts-ignore
 	public store: IPCMonitorStore;
 
-	public abstract async run(message: any): Promise<any>;
+	public abstract run(message: any): any;
 
 }
