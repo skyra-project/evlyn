@@ -1,11 +1,12 @@
 import { ServerResponse } from 'http';
 import { KlasaIncomingMessage, Route, RouteStore } from 'klasa-dashboard-hooks';
-import { EvlynClient } from '../lib/EvlynClient';
+
+const reply = JSON.stringify({ success: true, data: 'Hello World' });
 
 export default class extends Route {
 
-	public constructor(client: EvlynClient, store: RouteStore, file: string[], directory: string) {
-		super(client, store, file, directory, { route: '/' });
+	public constructor(store: RouteStore, file: string[], directory: string) {
+		super(store, file, directory, { route: '/' });
 	}
 
 	public async get(_: KlasaIncomingMessage, response: ServerResponse): Promise<void> {
@@ -13,5 +14,3 @@ export default class extends Route {
 	}
 
 }
-
-const reply = JSON.stringify({ success: true, data: 'Hello World' });

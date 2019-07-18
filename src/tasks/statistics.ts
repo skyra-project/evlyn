@@ -1,22 +1,21 @@
 import { Task } from 'klasa';
 import { StatisticsResults } from '../ipcMonitors/socketStatistics';
-import { EvlynClient } from '../lib/EvlynClient';
 import { PresenceType } from '../lib/util/constants';
 import { removeFirstAndAdd } from '../lib/util/util';
 
 export default class extends Task {
 
-	public client: EvlynClient;
 	private readonly _ids = {
 		aelia: '338249781594030090',
 		alestra: '419828209966776330',
 		evlyn: '444081201297227776',
 		skyra: '266624760782258186'
 	};
-	private _interval = this.create();
+
+	private _interval: NodeJS.Timer | null = this.create();
 
 	public async run(): Promise<void> {
-		const [broadcastSuccess, data] = await this.client.ipc.sendTo<[0 | 1, [0 | 1, StatisticsResults][]]>('ny-api', ['socketStatistics']);
+		const [broadcastSuccess, data] = await this.client.ipc.sendTo('ny-api', ['socketStatistics']) as [0 | 1, [0 | 1, StatisticsResults][]];
 		if (!broadcastSuccess) return;
 		for (const [success, entry] of data) {
 			if (!success) continue;
@@ -49,7 +48,8 @@ export default class extends Task {
 
 	private create(): NodeJS.Timer {
 		return this.client.setInterval(() => {
-			this.run().catch((error) => { this.client.emit('wtf', error); });
+			this.run()
+				.catch(error => { this.client.emit('wtf', error); });
 		}, 1000 * 60 * 5);
 	}
 
