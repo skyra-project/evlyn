@@ -1,23 +1,10 @@
 {
-	"compileOnSave": true,
+	"extends": "eslint-config-bamboo",
 	"compilerOptions": {
-        "declaration": true,
-		"lib": ["esnext"],
-		"module": "commonjs",
+		"noImplicitAny": false,
 		"outDir": "./dist",
-		"types": ["node"],
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "removeComments": true,
-        "sourceMap": true,
-        "target": "esnext"
+		"types": ["node"]
 	},
-	"exclude": [
-		"node_modules",
-		"bin",
-		"examples",
-		"scripts"
-	],
 	"include": [
 		"./src/**/*"
 	]
