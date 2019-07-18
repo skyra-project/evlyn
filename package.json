@@ -4,7 +4,6 @@
   "description": "Monitor and Reviver",
   "main": "dist/src/Evlyn.js",
   "scripts": {
-    "lint": "tslint -p tsconfig.json src/**/*.ts --fix",
     "pm2:delete": "pm2 delete Evlyn",
     "pm2:logs": "pm2 logs Evlyn --lines=200",
     "pm2:restart": "pm2 restart Evlyn",
@@ -12,9 +11,13 @@
     "pm2:start": "pm2 start dist/src/Evlyn.js --name=\"Evlyn\"",
     "pm2:stop": "pm2 stop Evlyn",
     "start": "node dist/src/Evlyn.js",
-    "test:lint": "tslint -p tsconfig.json src/**/*.ts",
+    "lint": "eslint --ext ts src --fix",
+    "test": "eslint --ext ts src",
+    "test:lint": "eslint --ext ts src",
     "update": "yarn",
-    "compile": "tsc -p ."
+    "build": "tsc -p .",
+    "watch": "tsc -p . -w",
+    "dev": "yarn build && yarn start"
   },
   "repository": {
     "type": "git",
