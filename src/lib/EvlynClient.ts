@@ -1,6 +1,6 @@
 import { Colors, util, KlasaClientOptions } from 'klasa';
 import { DashboardClient } from 'klasa-dashboard-hooks';
-import { Node } from 'veza';
+import { Client as VezaClient } from 'veza';
 import { IPCMonitorStore } from './structures/IPCMonitorStore';
 import { PresenceType } from './util/constants';
 import { createArray } from './util/util';
@@ -19,11 +19,9 @@ export class EvlynClient extends DashboardClient {
 		skyra: createArray<ClientStatistics[]>(60, () => [])
 	};
 
-	public ipc = new Node('evlyn-master')
-		.on('client.identify', client => { this.console.log(`${g} Client Connected: ${client.name}`); })
-		.on('client.disconnect', client => { this.console.log(`${y} Client Disconnected: ${client.name}`); })
-		.on('client.destroy', client => { this.console.log(`${y} Client Destroyed: ${client.name}`); })
-		.on('server.ready', server => { this.console.log(`${g} Client Ready: Named ${server.name}`); })
+	public ipc = new VezaClient('evlyn-master')
+		.on('disconnect', client => { this.console.log(`${y} Disconnected: ${client.name}`); })
+		.on('ready', client => { this.console.log(`${g} Ready ${client.name}`); })
 		.on('error', (error, client) => { this.console.error(`${r} Error from ${client.name}`, error); })
 		.on('message', this.ipcMonitors.run.bind(this.ipcMonitors));
 
@@ -50,7 +48,7 @@ declare module 'klasa' {
 			evlyn: ClientStatistics[][];
 			skyra: ClientStatistics[][];
 		};
-		ipc: Node;
+		ipc: VezaClient;
 	}
 
 	interface PieceDefaults {
