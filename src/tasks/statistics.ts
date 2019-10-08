@@ -15,7 +15,7 @@ export default class extends Task {
 	private _interval: NodeJS.Timer | null = this.create();
 
 	public async run(): Promise<void> {
-		const [broadcastSuccess, data] = await this.client.ipc.sendTo('ny-api', ['socketStatistics']) as [0 | 1, [0 | 1, StatisticsResults][]];
+		const [broadcastSuccess, data] = await this.client.ipc.broadcast(['socketStatistics']) as [0 | 1, [0 | 1, StatisticsResults][]];
 		if (!broadcastSuccess) return;
 		for (const [success, entry] of data) {
 			if (!success) continue;
