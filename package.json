@@ -43,7 +43,7 @@
     "discord.js": "github:discordjs/discord.js",
     "klasa": "github:dirigeants/klasa#settings",
     "klasa-dashboard-hooks": "github:dirigeants/klasa-dashboard-hooks#settings",
-    "typescript": "^3.6.4",
+    "typescript": "^3.7.2",
     "veza": "1.1.0"
   },
   "devDependencies": {
