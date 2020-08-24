@@ -1,0 +1,11 @@
+{
+	"eslint.validate": ["typescript"],
+	"editor.tabSize": 4,
+	"editor.useTabStops": true,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"files.eol": "\n",
+	"deepscan.enable": true,
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"powershell.codeFormatting.addWhitespaceAroundPipe": true
+}
