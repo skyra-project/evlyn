@@ -1,14 +1,15 @@
 # Ignore a blackhole and the folder for development
-dist/
 node_modules/
 .vs/
 
 # Ignore bwd folders
-src/bwd/provider/
-src/bwd/backups/
+dist/bwd/
 
 # Ignore the config file (contains sensitive information such as tokens)
 config.ts
+
+# Ignore the dist output
+dist/
 
 # Ignore heapsnapshot and log files
 *.heapsnapshot
@@ -16,3 +17,4 @@ config.ts
 
 # Ignore package locks
 package-lock.json
+

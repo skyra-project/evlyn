@@ -4,7 +4,6 @@ import { PresenceType } from '../lib/util/constants';
 import { removeFirstAndAdd } from '../lib/util/util';
 
 export default class extends Task {
-
 	private readonly _ids = {
 		aelia: '338249781594030090',
 		alestra: '419828209966776330',
@@ -12,10 +11,11 @@ export default class extends Task {
 		skyra: '266624760782258186'
 	};
 
+	// eslint-disable-next-line @typescript-eslint/no-invalid-this
 	private _interval: NodeJS.Timer | null = this.create();
 
 	public async run(): Promise<void> {
-		const [broadcastSuccess, data] = await this.client.ipc.broadcast(['socketStatistics']) as [0 | 1, [0 | 1, StatisticsResults][]];
+		const [broadcastSuccess, data] = (await this.client.ipc.broadcast(['socketStatistics'])) as [0 | 1, [0 | 1, StatisticsResults][]];
 		if (!broadcastSuccess) return;
 		for (const [success, entry] of data) {
 			if (!success) continue;
@@ -24,11 +24,12 @@ export default class extends Task {
 				const user = this.client.users.get(this._ids[entry.name]);
 				if (user) entry.presence = this.parseStatus(user.presence.status);
 				// Remove first element and add to the statistics table
-				removeFirstAndAdd(this.client.statistics[entry.name], entry);
+				removeFirstAndAdd(this.client.statistics[entry.name], entry.statistics);
 			}
 		}
 	}
 
+	// eslint-disable-next-line @typescript-eslint/require-await
 	public async init(): Promise<void> {
 		if (this.client.options.dev) this.disable();
 	}
@@ -47,20 +48,28 @@ export default class extends Task {
 	}
 
 	private create(): NodeJS.Timer {
+		this.run().catch((error) => {
+			this.client.emit('wtf', error);
+		});
 		return this.client.setInterval(() => {
-			this.run()
-				.catch(error => { this.client.emit('wtf', error); });
+			this.run().catch((error) => {
+				this.client.emit('wtf', error);
+			});
 		}, 1000 * 60 * 5);
 	}
 
 	private parseStatus(status: 'online' | 'offline' | 'idle' | 'dnd'): PresenceType | null {
 		switch (status) {
-			case 'online': return PresenceType.Online;
-			case 'offline': return PresenceType.Offline;
-			case 'idle': return PresenceType.Idle;
-			case 'dnd': return PresenceType.DoNotDisturb;
-			default: return null;
+			case 'online':
+				return PresenceType.Online;
+			case 'offline':
+				return PresenceType.Offline;
+			case 'idle':
+				return PresenceType.Idle;
+			case 'dnd':
+				return PresenceType.DoNotDisturb;
+			default:
+				return null;
 		}
 	}
-
 }

@@ -1,13 +1,12 @@
+import { EvlynClient } from '@lib/EvlynClient';
+import { ConstructorType } from '@lib/types/Types';
 import { Store } from 'klasa';
 import { NodeMessage } from 'veza';
-import { EvlynClient } from '../EvlynClient';
-import { ConstructorType } from '../types/Misc';
 import { IPCMonitor } from './IPCMonitor';
 
 export class IPCMonitorStore extends Store<string, IPCMonitor, ConstructorType<IPCMonitor>> {
-
 	public constructor(client: EvlynClient) {
-		// @ts-ignore
+		// @ts-expect-error 2345
 		super(client, 'ipcMonitors', IPCMonitor);
 	}
 
@@ -32,5 +31,4 @@ export class IPCMonitorStore extends Store<string, IPCMonitor, ConstructorType<I
 			message.reply([0, error]);
 		}
 	}
-
 }

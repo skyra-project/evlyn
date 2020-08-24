@@ -1,16 +1,11 @@
-import { ServerResponse } from 'http';
-import { KlasaIncomingMessage, Route, RouteStore } from 'klasa-dashboard-hooks';
+import { ApiRequest } from '@lib/structures/api/ApiRequest';
+import { ApiResponse } from '@lib/structures/api/ApiResponse';
+import { ApplyOptions } from '@skyra/decorators';
+import { Route, RouteOptions } from 'klasa-dashboard-hooks';
 
-const reply = JSON.stringify({ success: true, data: 'Hello World' });
-
+@ApplyOptions<RouteOptions>({ route: '/' })
 export default class extends Route {
-
-	public constructor(store: RouteStore, file: string[], directory: string) {
-		super(store, file, directory, { route: '/' });
+	public get(_: ApiRequest, response: ApiResponse): void {
+		response.json({ data: 'Hello World' });
 	}
-
-	public async get(_: KlasaIncomingMessage, response: ServerResponse): Promise<void> {
-		response.end(reply);
-	}
-
 }
