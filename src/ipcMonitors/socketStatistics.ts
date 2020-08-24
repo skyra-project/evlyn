@@ -12,7 +12,7 @@ export default class extends IPCMonitor {
 			statistics: this.client.ws.shards.map((shard) => ({
 				heapTotal: memoryUsage.heapTotal,
 				heapUsed: memoryUsage.heapUsed,
-				ping: shard.ping,
+				ping: [shard.ping, shard.ping, shard.ping],
 				status: shard.status
 			}))
 		};

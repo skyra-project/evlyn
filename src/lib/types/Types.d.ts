@@ -13,7 +13,7 @@ export interface ClientStatistics {
 	status: WebsocketStatus;
 	heapUsed: number;
 	heapTotal: number;
-	ping: number;
+	ping: number[];
 }
 
 /**
