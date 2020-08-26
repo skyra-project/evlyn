@@ -1,6 +1,6 @@
 {
 	"name": "evlyn",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "Monitor and Reviver",
 	"main": "dist/Evlyn.js",
 	"scripts": {
@@ -22,26 +22,29 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com/kyranet/Evlyn.git"
+		"url": "git+ssh://git@github.com/skyra-project/Evlyn.git"
 	},
 	"keywords": [
 		"discord.js",
-		"klasa",
+		"sapphire",
 		"reviver",
 		"monitor"
 	],
 	"private": true,
-	"author": "kyranet <kyradiscord@gmail.com>",
+	"author": "Antonio Román <kyradiscord@gmail.com>",
 	"license": "Apache-2.0",
 	"bugs": {
-		"url": "https://github.com/kyranet/Evlyn/issues"
+		"url": "https://github.com/skyra-project/Evlyn/issues"
 	},
 	"dependencies": {
+		"@klasa/stopwatch": "^0.0.1",
+		"@klasa/type": "^0.0.1",
+		"@sapphire/framework": "github:sapphire-project/framework#build",
 		"@sapphire/utilities": "github:sapphire-project/utilities#build-utilities",
-		"@skyra/decorators": "discordjs",
-		"discord.js": "github:discordjs/discord.js#fe7df708e44e0280dfaf0f8e457b154781bb5140",
-		"klasa": "skyra-project/klasa#build",
-		"klasa-dashboard-hooks": "github:skyra-project/klasa-dashboard-hooks#master",
+		"colorette": "^1.2.1",
+		"discord.js": "^12.3.1",
+		"i18next": "^19.7.0",
+		"i18next-fs-backend": "^1.0.7",
 		"module-alias": "^2.2.2",
 		"node-fetch": "^2.6.0",
 		"reflect-metadata": "^0.1.13",
@@ -51,6 +54,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^9.1.1",
 		"@commitlint/config-conventional": "^9.1.1",
+		"@sapphire/pieces": "github:sapphire-project/pieces#build",
 		"@skyra/eslint-config": "^5.3.0",
 		"@types/module-alias": "^2.0.0",
 		"@types/node": "^14.6.0",
