@@ -1,9 +1,10 @@
-import { Task } from 'klasa';
+import { Task } from '@lib/structures/Task';
 import { StatisticsResults } from '../ipcMonitors/socketStatistics';
-import { PresenceType } from '../lib/util/constants';
-import { removeFirstAndAdd } from '../lib/util/util';
+import { PresenceType } from '@utils/constants';
+import { removeFirstAndAdd } from '@utils/util';
+import { Client } from 'discord.js';
 
-export default class extends Task {
+export class ClientTask extends Task {
 	private readonly _ids = {
 		aelia: '338249781594030090',
 		alestra: '419828209966776330',
@@ -20,32 +21,33 @@ export default class extends Task {
 		if (!broadcastSuccess) return;
 		for (const [success, entry] of data) {
 			if (!success) continue;
-			if (entry.name in this.client.statistics) {
+
+			const name = entry.name as keyof Client['statistics'];
+			if (name in this.client.statistics) {
 				if (!entry.name) continue;
-				const user = this.client.users.get(this._ids[entry.name]);
+				const user = this.client.users.cache.get(this._ids[name]);
 				if (user) entry.presence = this.parseStatus(user.presence.status);
 				// Remove first element and add to the statistics table
-				removeFirstAndAdd(this.client.statistics[entry.name], entry.statistics);
+				removeFirstAndAdd(this.client.statistics[name], entry.statistics);
 			}
 		}
 	}
 
 	// eslint-disable-next-line @typescript-eslint/require-await
-	public async init(): Promise<void> {
-		if (this.client.options.dev) this.disable();
+	public onLoad() {
+		if (this.client.options.dev) {
+			this.store.unload(this);
+		} else {
+			super.onLoad();
+			if (!this._interval) this._interval = this.create();
+		}
 	}
 
-	public enable(): this {
-		if (!this._interval) this._interval = this.create();
-		return super.enable();
-	}
-
-	public disable(): this {
+	public onUnload() {
 		if (this._interval) {
 			this.client.clearInterval(this._interval);
 			this._interval = null;
 		}
-		return super.disable();
 	}
 
 	private create(): NodeJS.Timer {
@@ -59,10 +61,11 @@ export default class extends Task {
 		}, 1000 * 60 * 5);
 	}
 
-	private parseStatus(status: 'online' | 'offline' | 'idle' | 'dnd'): PresenceType | null {
+	private parseStatus(status: 'online' | 'invisible' | 'offline' | 'idle' | 'dnd'): PresenceType | null {
 		switch (status) {
 			case 'online':
 				return PresenceType.Online;
+			case 'invisible':
 			case 'offline':
 				return PresenceType.Offline;
 			case 'idle':

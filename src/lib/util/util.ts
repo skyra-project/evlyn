@@ -1,7 +1,7 @@
 import { FetchError } from '@lib/errors/FetchError';
-import { Events } from '@lib/types/Enums';
+import { Events } from '@sapphire/framework';
 import { isThenable } from '@sapphire/utilities';
-import { Client } from 'klasa';
+import { Client } from 'discord.js';
 import nodeFetch, { RequestInit, Response } from 'node-fetch';
 
 export function removeFirstAndAdd<T>(array: Array<T>, value: T): Array<T> {
@@ -21,7 +21,7 @@ export function createArray<T>(length: number, fill: (index: number, array: T[])
 }
 
 export function floatPromise(ctx: { client: Client }, promise: Promise<unknown>) {
-	if (isThenable(promise)) promise.catch((error) => ctx.client.emit(Events.Wtf, error));
+	if (isThenable(promise)) promise.catch((error) => ctx.client.emit(Events.Error, error));
 }
 
 export const enum FetchResultTypes {

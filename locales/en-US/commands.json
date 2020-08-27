@@ -1,0 +1,9 @@
+{
+	"evalDescription": "Evaluates arbitrary Javascript. Reserved for bot owner.",
+	"evalExtended": "The eval command evaluates code as-in, any error thrown from it will be handled.",
+	"evalTimeout": "TIMEOUT: Took longer than {{seconds}} seconds.",
+	"evalError": "**Error**:{{output}}\n**Type**:{{type}}\n{{time}}",
+	"evalSuccess": "**Output**:{{output}}\n**Type**:{{type}}\n{{time}}",
+	"execDescription": "Execute Order 66.",
+	"execExtended": "You better not know about this."
+}

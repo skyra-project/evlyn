@@ -1,12 +1,5 @@
-import { Piece } from 'klasa';
-import { IPCMonitorStore } from './IPCMonitorStore';
+import { BasePiece } from '@sapphire/framework';
 
-export abstract class IPCMonitor extends Piece {
-	/**
-	 * The store that manages this instance
-	 */
-	// @ts-ignore 2345
-	public store: IPCMonitorStore;
-
+export abstract class IPCMonitor extends BasePiece {
 	public abstract run(message: any): any;
 }

@@ -1,26 +1,23 @@
-import { EvlnCommand } from '@lib/structures/SkyraCommand';
-import { PermissionLevels } from '@lib/types/Enums';
+import { Args, Command } from '@sapphire/framework';
+import { PieceContext } from '@sapphire/pieces';
 import { codeBlock } from '@sapphire/utilities';
 import { exec } from '@utils/exec';
 import { fetch, FetchMethods, FetchResultTypes } from '@utils/util';
-import { MessageAttachment } from 'discord.js';
-import { CommandStore, KlasaMessage } from 'klasa';
+import { Message, MessageAttachment } from 'discord.js';
 
-export default class extends EvlnCommand {
-	public constructor(store: CommandStore, file: string[], directory: string) {
-		super(store, file, directory, {
+export default class extends Command {
+	public constructor(context: PieceContext) {
+		super(context, {
 			aliases: ['execute'],
-			description: (language) => language.get('commandExecDescription'),
-			extendedHelp: (language) => language.get('commandExecExtended'),
-			guarded: true,
-			permissionLevel: PermissionLevels.BotOwner,
-			usage: '<expression:string>',
-			flagSupport: true
+			description: 'commands:execDescription',
+			extendedHelp: 'commands:execExtended',
+			preconditions: ['OwnerOnly']
 		});
 	}
 
-	public async run(message: KlasaMessage, [input]: [string]) {
-		const result = await exec(input, { timeout: 'timeout' in message.flagArgs ? Number(message.flagArgs.timeout) : 60000 }).catch((error) => ({
+	public async run(message: Message, args: Args) {
+		const input = await args.pick('string');
+		const result = await exec(input, { timeout: 60000 }).catch((error) => ({
 			stdout: null,
 			stderr: error
 		}));
@@ -28,7 +25,7 @@ export default class extends EvlnCommand {
 		const outerr = result.stderr ? `**\`ERROR\`**${codeBlock('prolog', result.stderr)}` : '';
 		const joined = [output, outerr].join('\n') || 'No output';
 
-		return message.sendMessage(
+		return message.channel.send(
 			joined.length > 2000 ? await this.getHaste(joined).catch(() => new MessageAttachment(Buffer.from(joined), 'output.txt')) : joined
 		);
 	}

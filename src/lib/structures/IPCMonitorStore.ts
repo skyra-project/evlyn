@@ -1,18 +1,16 @@
 import { EvlynClient } from '@lib/EvlynClient';
-import { ConstructorType } from '@lib/types/Types';
-import { Store } from 'klasa';
 import { NodeMessage } from 'veza';
 import { IPCMonitor } from './IPCMonitor';
+import { BaseStore } from '@sapphire/framework';
 
-export class IPCMonitorStore extends Store<string, IPCMonitor, ConstructorType<IPCMonitor>> {
+export class IPCMonitorStore extends BaseStore<IPCMonitor> {
 	public constructor(client: EvlynClient) {
-		// @ts-expect-error 2345
-		super(client, 'ipcMonitors', IPCMonitor);
+		super(client, IPCMonitor as any, { name: 'ipcMonitors' });
 	}
 
 	public async run(message: NodeMessage): Promise<void> {
 		if (!Array.isArray(message.data) || message.data.length === 0 || message.data.length > 2) {
-			if (message.data) this.client.console.wtf('Invalid Payload', message.data);
+			if (message.data) console.error('Invalid Payload', message.data);
 			message.reply([0, 'INVALID_PAYLOAD']);
 			return;
 		}

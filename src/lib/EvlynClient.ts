@@ -1,17 +1,25 @@
 /* eslint-disable @typescript-eslint/no-invalid-this */
 import { IPCMonitorStore } from '@lib/structures/IPCMonitorStore';
+import { LanguageStore } from '@lib/structures/LanguageStore';
+import { PREFIX } from '@root/config';
+import { SapphireClient } from '@sapphire/framework';
 import { createArray } from '@utils/util';
-import { Colors, KlasaClientOptions, util } from 'klasa';
-import { DashboardClient } from 'klasa-dashboard-hooks';
+import { green, red, yellow } from 'colorette';
+import { ClientOptions } from 'discord.js';
 import { Server as VezaServer } from 'veza';
+import './extensions/Message';
+import { TaskStore } from './structures/TaskStore';
 import { ClientStatistics } from './types/Types';
 
-const g = new Colors({ text: 'green' }).format('[IPC   ]');
-const y = new Colors({ text: 'yellow' }).format('[IPC   ]');
-const r = new Colors({ text: 'red' }).format('[IPC   ]');
+const g = green('[IPC ]');
+const y = yellow('[IPC ]');
+const r = red('[IPC ]');
 
-export class EvlynClient extends DashboardClient {
+export class EvlynClient extends SapphireClient {
 	public ipcMonitors = new IPCMonitorStore(this);
+	public tasks = new TaskStore(this);
+	public languages = new LanguageStore(this);
+
 	public statistics = {
 		aelia: createArray<ClientStatistics[]>(60, () => []),
 		alestra: createArray<ClientStatistics[]>(60, () => []),
@@ -21,20 +29,24 @@ export class EvlynClient extends DashboardClient {
 
 	public ipc = new VezaServer('evlyn-master')
 		.on('disconnect', (client) => {
-			this.console.log(`${y} Disconnected: ${client.name}`);
+			console.log(`${y} Disconnected: ${client.name}`);
 		})
 		.on('open', () => {
-			this.console.log(`${g} Ready ${this.ipc.name}`);
+			console.log(`${g} Ready ${this.ipc.name}`);
 		})
 		.on('error', (error, client) => {
-			this.console.error(`${r} Error from ${client ? client.name : 'Unknown'}`, error);
+			console.error(`${r} Error from ${client ? client.name : 'Unknown'}`, error);
 		})
 		.on('message', this.ipcMonitors.run.bind(this.ipcMonitors));
 
-	public constructor(options: KlasaClientOptions) {
-		super(util.mergeDefault({ dev: false }, options));
-		this.registerStore(this.ipcMonitors);
-	}
-}
+	public constructor({ dev = false, ...options }: ClientOptions) {
+		super({ ...options, dev });
+		this.registerStore(this.ipcMonitors) //
+			.registerStore(this.tasks)
+			.registerStore(this.languages);
 
-EvlynClient.defaultPermissionLevels.add(0, ({ client, author }) => (author ? client.owners.has(author) : false), { break: true });
+		this.registerUserDirectories();
+	}
+
+	public fetchPrefix = () => PREFIX;
+}

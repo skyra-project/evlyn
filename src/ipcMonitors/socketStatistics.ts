@@ -1,9 +1,9 @@
 import { ClientStatistics } from '@lib/types/Types';
-import type { Client } from 'klasa';
-import { IPCMonitor } from '../lib/structures/IPCMonitor';
-import { PresenceType } from '../lib/util/constants';
+import { IPCMonitor } from '@lib/structures/IPCMonitor';
+import { PresenceType } from '@utils/constants';
+import { Client } from 'discord.js';
 
-export default class extends IPCMonitor {
+export class ClientIPCMonitor extends IPCMonitor {
 	public run(): StatisticsResults {
 		const memoryUsage = process.memoryUsage();
 		return {
