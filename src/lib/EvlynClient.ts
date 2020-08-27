@@ -6,7 +6,6 @@ import { SapphireClient } from '@sapphire/framework';
 import { createArray } from '@utils/util';
 import { green, red, yellow } from 'colorette';
 import { ClientOptions } from 'discord.js';
-import { join } from 'path';
 import { Server as VezaServer } from 'veza';
 import './extensions/Message';
 import { TaskStore } from './structures/TaskStore';
@@ -46,11 +45,7 @@ export class EvlynClient extends SapphireClient {
 			.registerStore(this.tasks)
 			.registerStore(this.languages);
 
-		this.commands.registerPath(join(__dirname, '..', 'commands'));
-		this.ipcMonitors.registerPath(join(__dirname, '..', 'ipcMonitors'));
-		this.languages.registerPath(join(__dirname, '..', 'languages'));
-		this.preconditions.registerPath(join(__dirname, '..', 'preconditions'));
-		this.tasks.registerPath(join(__dirname, '..', 'tasks'));
+		this.registerUserDirectories();
 	}
 
 	public fetchPrefix = () => PREFIX;

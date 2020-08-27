@@ -5,8 +5,7 @@ import { BaseStore } from '@sapphire/framework';
 
 export class IPCMonitorStore extends BaseStore<IPCMonitor> {
 	public constructor(client: EvlynClient) {
-		// @ts-expect-error 2345
-		super(client, IPCMonitor);
+		super(client, IPCMonitor as any, { name: 'ipcMonitors' });
 	}
 
 	public async run(message: NodeMessage): Promise<void> {

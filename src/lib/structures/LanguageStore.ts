@@ -4,6 +4,6 @@ import { BaseStore } from '@sapphire/framework';
 
 export class LanguageStore extends BaseStore<Language> {
 	public constructor(client: EvlynClient) {
-		super(client, Language);
+		super(client, Language, { name: 'languages' });
 	}
 }

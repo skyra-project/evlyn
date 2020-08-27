@@ -4,7 +4,6 @@ import { BaseStore } from '@sapphire/framework';
 
 export class TaskStore extends BaseStore<Task> {
 	public constructor(client: EvlynClient) {
-		// @ts-expect-error 2345
-		super(client, Task);
+		super(client, Task as any, { name: 'tasks' });
 	}
 }

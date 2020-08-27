@@ -209,7 +209,7 @@
 
 "@sapphire/framework@github:sapphire-project/framework#build":
   version "0.0.1"
-  resolved "https://codeload.github.com/sapphire-project/framework/tar.gz/d9b1c0e32bf609d67de1671263b08e67c578330e"
+  resolved "https://codeload.github.com/sapphire-project/framework/tar.gz/9be0ba53021c00ec85677ba084b4e389384f9778"
   dependencies:
     "@klasa/ratelimits" "^0.1.0"
     "@klasa/utils" "^0.1.0"
@@ -218,7 +218,7 @@
 
 "@sapphire/pieces@github:sapphire-project/pieces#build":
   version "1.0.0"
-  resolved "https://codeload.github.com/sapphire-project/pieces/tar.gz/6eb6b851a6b71f65aff263ff3ce117ac72b3d691"
+  resolved "https://codeload.github.com/sapphire-project/pieces/tar.gz/4fe62491bcec10442062756e52cd101d20bf2018"
   dependencies:
     "@discordjs/collection" "^0.1.6"
 

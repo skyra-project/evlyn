@@ -5,8 +5,6 @@
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"files.eol": "\n",
-	"deepscan.enable": true,
 	"typescript.tsdk": "node_modules\\typescript\\lib",
-	"powershell.codeFormatting.addWhitespaceAroundPipe": true,
-	"i18next.i18nPaths": "d:/r/archid/evlyn/src/locales"
+	"powershell.codeFormatting.addWhitespaceAroundPipe": true
 }
