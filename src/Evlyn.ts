@@ -1,14 +1,9 @@
+import { EvlynClient } from '@lib/EvlynClient';
+import { CLIENT_OPTIONS, TOKEN } from '@root/config';
+import '@utils/initClean';
+import { green, red, yellow } from 'colorette';
 import 'module-alias/register';
 import 'reflect-metadata';
-import '@utils/initClean';
-import { EvlynClient } from '@lib/EvlynClient';
-import {
-	CLIENT_OPTIONS,
-	DEV,
-	// EVLYN_HOST, EVLYN_PORT,
-	TOKEN
-} from '@root/config';
-import { green, red, yellow } from 'colorette';
 // import i18next from 'i18next';
 // import Backend from 'i18next-fs-backend';
 import { inspect } from 'util';
@@ -42,15 +37,6 @@ async function main() {
 			.catch((error) => {
 				throw `${red('[WS  ]')} ${yellow('Failed to login to Discord:')}\n${error}`;
 			});
-
-		if (!DEV) {
-			// client.ipc
-			// 	.listen({ port: EVLYN_PORT, host: EVLYN_HOST })
-			// 	.then(() => console.log(`${green('[IPC ]')} Ready to accept connections.`))
-			// 	.catch((error) => {
-			// 		throw `${red('[IPC ]')} ${yellow('Failed to open the socket:')}\n${error}`;
-			// 	});
-		}
 	} catch (error) {
 		client.destroy();
 		throw error;

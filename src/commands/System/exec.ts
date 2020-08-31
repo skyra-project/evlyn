@@ -1,3 +1,4 @@
+import { PreConditions } from '@lib/types/Types';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';
 import { codeBlock } from '@sapphire/utilities';
@@ -9,7 +10,7 @@ import { Message, MessageAttachment } from 'discord.js';
 	aliases: ['execute'],
 	description: 'commands:execDescription',
 	detailedDescription: 'commands:execExtended',
-	preconditions: ['OwnerOnly']
+	preconditions: [PreConditions.OwnerOnly]
 })
 export default class extends Command {
 	public async run(message: Message, args: Args) {

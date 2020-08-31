@@ -3,7 +3,6 @@ import { ClientOptions } from 'discord.js';
 
 export const DEV = false;
 export const EVLYN_PORT = 9997;
-export const EVLYN_HOST = 'localhost';
 export const PREFIX = DEV ? 'ev!' : 'ev!';
 export const OWNER_ID = '';
 

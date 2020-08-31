@@ -1,6 +1,6 @@
 import { LanguageStore } from '@lib/structures/LanguageStore';
 import { TaskStore } from '@lib/structures/TaskStore';
-import { ClientStatistics } from './Types';
+import { ClientNames, MessageFromClientData } from '@lib/websocket/types';
 
 declare module 'discord.js' {
 	interface ClientOptions {
@@ -10,11 +10,6 @@ declare module 'discord.js' {
 	interface Client {
 		tasks: TaskStore;
 		languages: LanguageStore;
-		statistics: {
-			aelia: ClientStatistics[][];
-			alestra: ClientStatistics[][];
-			evlyn: ClientStatistics[][];
-			skyra: ClientStatistics[][];
-		};
+		statistics: Record<ClientNames, Collection<number, Omit<MessageFromClientData, 'name'>>>;
 	}
 }

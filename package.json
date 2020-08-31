@@ -49,6 +49,7 @@
 		"module-alias": "^2.2.2",
 		"node-fetch": "^2.6.0",
 		"reflect-metadata": "^0.1.13",
+		"ws": "^7.3.1",
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {

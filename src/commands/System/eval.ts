@@ -1,5 +1,6 @@
 import { Stopwatch } from '@klasa/stopwatch';
 import { Type } from '@klasa/type';
+import { PreConditions } from '@lib/types/Types';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';
 import { codeBlock, isThenable } from '@sapphire/utilities';
@@ -11,7 +12,7 @@ import { inspect } from 'util';
 	aliases: ['ev'],
 	description: 'commands:evalDescription',
 	detailedDescription: 'commands:evalExtended',
-	preconditions: ['OwnerOnly']
+	preconditions: [PreConditions.OwnerOnly]
 })
 export default class ClientCommand extends Command {
 	public async run(message: Message, args: Args) {

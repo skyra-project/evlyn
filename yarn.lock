@@ -204,7 +204,7 @@
 
 "@sapphire/decorators@github:sapphire-project/utilities#build-decorators":
   version "0.0.1"
-  resolved "https://codeload.github.com/sapphire-project/utilities/tar.gz/6d1deaec35b152ec77819e05b8572d86994083a9"
+  resolved "https://codeload.github.com/sapphire-project/utilities/tar.gz/198644962fc1d1b7b469ba9ac79192d72ecc0f33"
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3.10.1"
     "@typescript-eslint/parser" "^3.10.1"
