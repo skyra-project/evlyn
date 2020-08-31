@@ -12,8 +12,6 @@
 		"docker:dev": "yarn docker:build && yarn docker:run && yarn docker:logs",
 		"start": "node dist/Evlyn.js",
 		"lint": "eslint --ext ts src --fix",
-		"format": "prettier --write --loglevel=warn src/**/*.ts",
-		"format:check": "prettier --check --loglevel=warn src/**/*.ts",
 		"update": "yarn upgrade-interactive --latest",
 		"build": "tsc -b src",
 		"clean": "tsc -b src --clean",
