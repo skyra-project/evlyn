@@ -1,31 +1,40 @@
 import { Stopwatch } from '@klasa/stopwatch';
 import { Type } from '@klasa/type';
-import { Args, Command } from '@sapphire/framework';
-import { PieceContext } from '@sapphire/pieces';
+import { ApplyOptions } from '@sapphire/decorators';
+import { Args, Command, CommandOptions } from '@sapphire/framework';
 import { codeBlock, isThenable } from '@sapphire/utilities';
 import { clean } from '@utils/clean';
 import { Message } from 'discord.js';
 import { inspect } from 'util';
 
+@ApplyOptions<CommandOptions>({
+	aliases: ['ev'],
+	description: 'commands:evalDescription',
+	detailedDescription: 'commands:evalExtended',
+	preconditions: ['OwnerOnly']
+})
 export default class ClientCommand extends Command {
-	public constructor(context: PieceContext) {
-		super(context, {
-			aliases: ['ev'],
-			description: 'commands:evalDescription',
-			extendedHelp: 'commands:evalExtended',
-			preconditions: ['OwnerOnly']
-		});
-	}
-
 	public async run(message: Message, args: Args) {
 		const code = await args.pick('string');
 		const { success, result, time, type } = await this.eval(message, code);
 
-		return message.sendTranslated(success ? 'commands:evalSuccess' : 'commands:evalError', {
-			output: codeBlock('js', result),
-			type: codeBlock('ts', type),
-			time
-		});
+		return message.channel.send(
+			[
+				`**Success**: ${success ? 'Yes' : 'No'}`, //
+				`**Output**:${codeBlock('js', result)}`,
+				`**Type**:${codeBlock('ts', type)}`,
+				time
+			].join('\n')
+		);
+
+		/* Disabled until we have an i18next plugin */
+		// return message.sendTranslated(success ? 'commands:evalSuccess' : 'commands:evalError', [
+		// 	{
+		// 		content: codeBlock('js', result),
+		// 		type: codeBlock('ts', type),
+		// 		time
+		// 	}
+		// ]);
 	}
 
 	// Eval the input

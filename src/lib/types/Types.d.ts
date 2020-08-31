@@ -1,11 +1,6 @@
 import { PresenceType } from '@utils/constants';
 
 /**
- * The constructor type
- */
-export type ConstructorType<V> = new (...args: any[]) => V;
-
-/**
  * The client statistics for each shard
  */
 export interface ClientStatistics {
