@@ -12,8 +12,6 @@
 		"docker:dev": "yarn docker:build && yarn docker:run && yarn docker:logs",
 		"start": "node dist/Evlyn.js",
 		"lint": "eslint --ext ts src --fix",
-		"format": "prettier --write --loglevel=warn src/**/*.ts",
-		"format:check": "prettier --check --loglevel=warn src/**/*.ts",
 		"update": "yarn upgrade-interactive --latest",
 		"build": "tsc -b src",
 		"clean": "tsc -b src --clean",
@@ -39,6 +37,7 @@
 	"dependencies": {
 		"@klasa/stopwatch": "^0.0.1",
 		"@klasa/type": "^0.0.1",
+		"@sapphire/decorators": "github:sapphire-project/utilities#build-decorators",
 		"@sapphire/framework": "github:sapphire-project/framework#build",
 		"@sapphire/utilities": "github:sapphire-project/utilities#build-utilities",
 		"colorette": "^1.2.1",
@@ -48,7 +47,7 @@
 		"module-alias": "^2.2.2",
 		"node-fetch": "^2.6.0",
 		"reflect-metadata": "^0.1.13",
-		"veza": "1.1.0",
+		"ws": "^7.3.1",
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {

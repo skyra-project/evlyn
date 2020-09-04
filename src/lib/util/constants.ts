@@ -1,25 +1,12 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 
-/**
- * The presence types
- */
-export enum PresenceType {
-	/**
-	 * The Online status
-	 */
-	Online = 'online',
-	/**
-	 * The Offline status
-	 */
-	Offline = 'offline',
-	/**
-	 * The Idle status
-	 */
-	Idle = 'idle',
-	/**
-	 * The Do Not Disturb status
-	 */
-	DoNotDisturb = 'dnd'
+export const enum Time {
+	Millisecond = 1,
+	Second = 1000,
+	Minute = 1000 * 60,
+	Hour = 1000 * 60 * 60,
+	Day = 1000 * 60 * 60 * 24,
+	Year = 1000 * 60 * 60 * 24 * 365
 }
 
 export namespace Mime {
@@ -89,5 +76,3 @@ export const enum APIErrors {
 	ReactionBlocked = 90001,
 	ResourceOverloaded = 130000
 }
-
-export const PRESENCE_STATUS = [PresenceType.Online, PresenceType.Offline, PresenceType.Idle, PresenceType.DoNotDisturb];

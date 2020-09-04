@@ -1,20 +1,18 @@
-import { Args, Command } from '@sapphire/framework';
-import { PieceContext } from '@sapphire/pieces';
+import { PreConditions } from '@lib/types/Types';
+import { ApplyOptions } from '@sapphire/decorators';
+import { Args, Command, CommandOptions } from '@sapphire/framework';
 import { codeBlock } from '@sapphire/utilities';
 import { exec } from '@utils/exec';
 import { fetch, FetchMethods, FetchResultTypes } from '@utils/util';
 import { Message, MessageAttachment } from 'discord.js';
 
+@ApplyOptions<CommandOptions>({
+	aliases: ['execute'],
+	description: 'commands:execDescription',
+	detailedDescription: 'commands:execExtended',
+	preconditions: [PreConditions.OwnerOnly]
+})
 export default class extends Command {
-	public constructor(context: PieceContext) {
-		super(context, {
-			aliases: ['execute'],
-			description: 'commands:execDescription',
-			extendedHelp: 'commands:execExtended',
-			preconditions: ['OwnerOnly']
-		});
-	}
-
 	public async run(message: Message, args: Args) {
 		const input = await args.pick('string');
 		const result = await exec(input, { timeout: 60000 }).catch((error) => ({

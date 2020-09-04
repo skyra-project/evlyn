@@ -14,12 +14,6 @@ export function removeFirstAndAdd<T>(array: Array<T>, value: T): Array<T> {
 	return array;
 }
 
-export function createArray<T>(length: number, fill: (index: number, array: T[]) => T): T[] {
-	const output: T[] = [];
-	for (let i = 0; i < length; i++) output.push(fill(i, output));
-	return output;
-}
-
 export function floatPromise(ctx: { client: Client }, promise: Promise<unknown>) {
 	if (isThenable(promise)) promise.catch((error) => ctx.client.emit(Events.Error, error));
 }

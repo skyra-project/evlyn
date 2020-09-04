@@ -2,6 +2,7 @@
 	"extends": "@skyra/eslint-config",
 	"compilerOptions": {
 		"target": "ESNext",
+		"skipLibCheck": true,
 		"useDefineForClassFields": true,
 		"esModuleInterop": true
 	}
