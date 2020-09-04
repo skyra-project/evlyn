@@ -32,10 +32,12 @@ export default class WebsocketConsumer {
 		const { name, ...statistics } = message.data;
 		this.client.statistics[name].set(Date.now(), statistics);
 
-		// If there are 60 or more entries for this client
-		if (this.client.statistics[name].size >= 60) {
-			// Then sweep any heartbearts of 5 minutes and older
-			this.client.statistics[name].sweep((_, key) => key > Date.now() - Time.Minute * 5);
+		// If there are 24 or more entries for this client
+		// There is a ping every 5 minutes so this should trigger roughly every 2 hours
+		if (this.client.statistics[name].size >= 24) {
+			// Then sweep any heartbearts of 60 minutes and older
+			// This ensures there's always a backlog of 1 full hour of 5 minute interval pings
+			this.client.statistics[name].sweep((_, key) => key > Date.now() - Time.Minute * 60);
 		}
 	}
 

@@ -22,10 +22,9 @@ export class EvlynClient extends SapphireClient {
 
 	public constructor({ dev = false, ...options }: ClientOptions) {
 		super({ ...options, dev });
-		this.registerStore(this.languages);
-		// .registerStore(this.tasks) //
-
-		this.registerUserDirectories();
+		this.registerStore(this.languages) //
+			.registerStore(this.tasks)
+			.registerUserDirectories();
 	}
 
 	public fetchPrefix = () => PREFIX;

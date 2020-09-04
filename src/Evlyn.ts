@@ -1,9 +1,9 @@
-import { EvlynClient } from '@lib/EvlynClient';
-import { CLIENT_OPTIONS, TOKEN } from '@root/config';
-import '@utils/initClean';
-import { green, red, yellow } from 'colorette';
 import 'module-alias/register';
 import 'reflect-metadata';
+import '@utils/initClean';
+import { EvlynClient } from '@lib/EvlynClient';
+import { CLIENT_OPTIONS, TOKEN } from '@root/config';
+import { green, red, yellow } from 'colorette';
 // import i18next from 'i18next';
 // import Backend from 'i18next-fs-backend';
 import { inspect } from 'util';
