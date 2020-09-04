@@ -34,6 +34,6 @@ export class ClientTask extends Task {
 		this.run();
 		return this.client.setInterval(() => {
 			this.run();
-		}, Time.Minute * 0.5);
+		}, Time.Minute * 5);
 	}
 }
