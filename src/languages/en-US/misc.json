@@ -1,5 +1,4 @@
 {
-	"default": "{{key}} has not been localized for en-US yet.",
 	"defaultLanguage": "Default Language",
 	"reactionhandlerPrompt": "Which page would you like to jump to?",
 	"commandMessageMissing": "Missing one or more required arguments after end of input.",
