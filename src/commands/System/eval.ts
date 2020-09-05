@@ -10,8 +10,8 @@ import { inspect } from 'util';
 
 @ApplyOptions<CommandOptions>({
 	aliases: ['ev'],
-	description: 'commands:evalDescription',
-	detailedDescription: 'commands:evalExtended',
+	description: 'commands:eval.description',
+	detailedDescription: 'commands:eval.extended',
 	preconditions: [PreConditions.OwnerOnly]
 })
 export default class ClientCommand extends Command {
@@ -19,23 +19,13 @@ export default class ClientCommand extends Command {
 		const code = await args.pick('string');
 		const { success, result, time, type } = await this.eval(message, code);
 
-		return message.channel.send(
-			[
-				`**Success**: ${success ? 'Yes' : 'No'}`, //
-				`**Output**:${codeBlock('js', result)}`,
-				`**Type**:${codeBlock('ts', type)}`,
+		return message.sendTranslated(success ? 'commands:eval.success' : 'commands:eval.error', [
+			{
+				output: codeBlock('js', result),
+				type: codeBlock('ts', type),
 				time
-			].join('\n')
-		);
-
-		/* Disabled until we have an i18next plugin */
-		// return message.sendTranslated(success ? 'commands:evalSuccess' : 'commands:evalError', [
-		// 	{
-		// 		content: codeBlock('js', result),
-		// 		type: codeBlock('ts', type),
-		// 		time
-		// 	}
-		// ]);
+			}
+		]);
 	}
 
 	// Eval the input

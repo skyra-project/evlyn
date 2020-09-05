@@ -12,5 +12,5 @@
 		"composite": true,
 		"declaration": true
 	},
-	"include": ["."]
+	"include": [".", "./languages/**/*.json"]
 }
