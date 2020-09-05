@@ -8,7 +8,6 @@ export const OWNER_ID = '';
 
 export const CLIENT_OPTIONS: ClientOptions = {
 	dev: DEV,
-
 	ws: { intents: ['GUILDS', 'GUILD_MESSAGES'] },
 	messageCacheLifetime: 120,
 	messageCacheMaxSize: 25,
