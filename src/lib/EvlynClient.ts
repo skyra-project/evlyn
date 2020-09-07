@@ -30,7 +30,12 @@ export class EvlynClient extends SapphireClient {
 			i18n: {
 				missingKey: 'global:missingKey',
 				i18next: {
+					preload: ['en-US'],
+					load: 'all',
+					fallbackLng: 'en-US',
+					initImmediate: false,
 					interpolation: {
+						escapeValue: false,
 						format: (value: unknown, format?: string) => {
 							switch (format as EvlynFormatters) {
 								case EvlynFormatters.AndList: {
