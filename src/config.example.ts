@@ -1,4 +1,5 @@
 // Remove `.example` from the file extension to configure Evlyn
+import { LogLevel } from '@sapphire/framework';
 import { ClientOptions } from 'discord.js';
 
 export const DEV = false;
@@ -13,6 +14,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
 	messageCacheMaxSize: 25,
 	messageSweepInterval: 300,
 	presence: { activity: { name: 'and monitoring...', type: 'WATCHING' } },
+	logger: { level: LogLevel.Debug },
 	restTimeOffset: 0
 };
 
