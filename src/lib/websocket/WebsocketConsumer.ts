@@ -44,6 +44,7 @@ export default class WebsocketConsumer {
 	private handleMessage(message: MessageFromClient) {
 		switch (message.action) {
 			case MessageFromClientAction.HeartBeat: {
+				this.client.logger.debug('Received a heartbeat message from: ', this.#name);
 				this.handleHeartBeat(message);
 				break;
 			}

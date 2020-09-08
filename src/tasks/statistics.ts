@@ -8,7 +8,8 @@ export class ClientTask extends Task {
 
 	public run(): void {
 		// Send a ping message to all known clients
-		for (const [, client] of this.client.websocket.consumers) {
+		for (const [clientName, client] of this.client.websocket.consumers) {
+			this.client.logger.debug('Sending a ping message to: ', clientName);
 			client.send({ action: MessageFromServerAction.Ping });
 		}
 	}

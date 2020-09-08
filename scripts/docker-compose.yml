@@ -1,0 +1,14 @@
+version: '2.4'
+services:
+  evlyn:
+    container_name: Evlyn
+    image: 'skyrabot/evlyn:main'
+    mem_limit: 500M
+    restart: unless-stopped
+  alestra:
+    container_name: Alestra
+    depends_on:
+      - evlyn
+    image: 'skyrabot/alestra:main'
+    mem_limit: 500M
+    restart: unless-stopped

@@ -2,6 +2,10 @@ FROM node:14-alpine
 
 WORKDIR /usr/src/app
 
+RUN apk add --no-cache \
+	build-base \
+	python
+
 COPY package.json ./
 COPY yarn.lock ./
 COPY .yarnclean ./
@@ -13,4 +17,4 @@ RUN yarn install --frozen-lockfile --link-duplicates
 
 COPY dist/ .
 
-CMD ["node", "./Alestra.js"]
+CMD ["node", "./Evlyn.js"]
