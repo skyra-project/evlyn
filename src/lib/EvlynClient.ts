@@ -28,7 +28,7 @@ export class EvlynClient extends SapphireClient {
 			...options,
 			dev,
 			i18n: {
-				missingKey: 'global:missingKey',
+				defaultMissingKey: 'global:missingKey',
 				i18next: {
 					preload: ['en-US'],
 					load: 'all',
