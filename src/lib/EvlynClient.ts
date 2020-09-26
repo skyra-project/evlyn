@@ -28,7 +28,8 @@ export class EvlynClient extends SapphireClient {
 			...options,
 			dev,
 			i18n: {
-				defaultMissingKey: 'global:missingKey',
+				defaultMissingKey: 'missingKey',
+				defaultNS: 'global',
 				i18next: {
 					preload: ['en-US'],
 					load: 'all',
@@ -39,10 +40,10 @@ export class EvlynClient extends SapphireClient {
 						format: (value: unknown, format?: string) => {
 							switch (format as EvlynFormatters) {
 								case EvlynFormatters.AndList: {
-									return list(value as string[], i18next.t('global:and'));
+									return list(value as string[], i18next.t('and'));
 								}
 								case EvlynFormatters.OrList: {
-									return list(value as string[], i18next.t('global:or'));
+									return list(value as string[], i18next.t('or'));
 								}
 								case EvlynFormatters.Permissions: {
 									return i18next.t(`permissions:${value}`);
