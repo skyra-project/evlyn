@@ -1,6 +1,6 @@
 // Remove `.example` from the file extension to configure Evlyn
 import { LogLevel } from '@sapphire/framework';
-import { ClientOptions } from 'discord.js';
+import type { ClientOptions } from 'discord.js';
 
 export const DEV = false;
 export const EVLYN_PORT = 9997;

@@ -1,9 +1,0 @@
-{
-	"defaultLanguage": "Default Language",
-	"reactionhandlerPrompt": "Which page would you like to jump to?",
-	"commandMessageMissing": "Missing one or more required arguments after end of input.",
-	"commandMessageMissingRequired": "{{name}} is a required argument.",
-	"commandMessageMissingOptionals": "Missing a required option: ({{possibles}})",
-	"commandMessageNomatch": "Your option didn't match any of the possibilities: ({{possibles}})",
-	"prefixReminder": "The prefix in this guild is set to: \"{{prefix}}\""
-}

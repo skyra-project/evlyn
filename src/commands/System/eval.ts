@@ -1,17 +1,18 @@
-import { Stopwatch } from '@klasa/stopwatch';
-import { Type } from '@klasa/type';
-import { PreConditions } from '@lib/types/Types';
+import { PreConditions } from '#lib/types/Types';
+import { clean } from '#utils/clean';
+import { fetch, FetchMethods, FetchResultTypes } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';
+import { Stopwatch } from '@sapphire/stopwatch';
+import { Type } from '@sapphire/type';
 import { codeBlock, isThenable } from '@sapphire/utilities';
-import { clean } from '@utils/clean';
-import { Message } from 'discord.js';
+import { Message, MessageAttachment } from 'discord.js';
 import { inspect } from 'util';
 
 @ApplyOptions<CommandOptions>({
 	aliases: ['ev'],
-	description: 'commands:eval.description',
-	detailedDescription: 'commands:eval.extended',
+	description: 'Evaluates arbitrary Javascript. Reserved for bot owner.',
+	detailedDescription: 'The eval command evaluates code as-in, any error thrown from it will be handled.',
 	preconditions: [PreConditions.OwnerOnly]
 })
 export default class ClientCommand extends Command {
@@ -19,13 +20,11 @@ export default class ClientCommand extends Command {
 		const code = await args.pick('string');
 		const { success, result, time, type } = await this.eval(message, code);
 
-		return message.sendTranslated(success ? 'commands:eval.success' : 'commands:eval.error', [
-			{
-				output: codeBlock('js', result),
-				type: codeBlock('ts', type),
-				time
-			}
-		]);
+		const out = success
+			? `**Output**:${codeBlock('js', result)}\n**Type**:${codeBlock('ts', type)}\n${time}`
+			: `**Error**:${codeBlock('js', result)}\n**Type**:${codeBlock('ts', type)}\n${time}`;
+
+		return message.send(out.length > 2000 ? await this.getHaste(out).catch(() => new MessageAttachment(Buffer.from(out), 'output.txt')) : out);
 	}
 
 	// Eval the input
@@ -69,5 +68,12 @@ export default class ClientCommand extends Command {
 
 	private formatTime(syncTime: string, asyncTime: string) {
 		return asyncTime ? `⏱ ${asyncTime}<${syncTime}>` : `⏱ ${syncTime}`;
+	}
+
+	private async getHaste(result: string) {
+		const { key } = (await fetch('https://hastebin.skyra.pw/documents', { method: FetchMethods.Post, body: result }, FetchResultTypes.JSON)) as {
+			key: string;
+		};
+		return `https://hastebin.skyra.pw/${key}.js`;
 	}
 }

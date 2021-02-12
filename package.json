@@ -3,6 +3,11 @@
 	"version": "3.0.0",
 	"description": "Monitor and Reviver",
 	"main": "dist/Evlyn.js",
+	"imports": {
+		"#lib/*": "./dist/lib/*.js",
+		"#root/*": "./dist/*.js",
+		"#utils/*": "./dist/lib/util/*.js"
+	},
 	"scripts": {
 		"docker:build": "yarn build && docker build -t skyrabot/evlyn .",
 		"docker:run": "docker run --rm -d -it --name evlyn skyrabot/evlyn",
@@ -36,16 +41,15 @@
 		"url": "https://github.com/skyra-project/Evlyn/issues"
 	},
 	"dependencies": {
-		"@klasa/stopwatch": "^0.0.1",
-		"@klasa/type": "^0.0.1",
 		"@sapphire/decorators": "^2.0.3",
-		"@sapphire/framework": "^1.0.0-alpha.9",
+		"@sapphire/framework": "^1.0.0-alpha.10",
+		"@sapphire/plugin-logger": "^1.0.7",
+		"@sapphire/stopwatch": "^1.0.4",
+		"@sapphire/type": "^1.1.4",
 		"@sapphire/utilities": "^1.4.4",
-		"@scp/in17n": "^2.0.1",
+		"@skyra/editable-commands": "^1.0.0",
 		"colorette": "^1.2.1",
 		"discord.js": "^12.5.1",
-		"i18next": "^19.8.7",
-		"module-alias": "^2.2.2",
 		"node-fetch": "^2.6.1",
 		"reflect-metadata": "^0.1.13",
 		"ws": "^7.4.3",
@@ -54,10 +58,11 @@
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
-		"@sapphire/pieces": "^1.2.1",
-		"@skyra/eslint-config": "^5.3.3",
-		"@types/module-alias": "^2.0.0",
-		"@types/node": "^14.14.25",
+		"@sapphire/eslint-config": "^2.1.1",
+		"@sapphire/pieces": "^1.2.2",
+		"@sapphire/prettier-config": "^1.0.6",
+		"@sapphire/ts-config": "^2.0.0",
+		"@types/node": "^14.14.27",
 		"@types/node-fetch": "^2.5.8",
 		"@types/ws": "^7.4.0",
 		"@typescript-eslint/eslint-plugin": "^4.15.0",
@@ -71,12 +76,6 @@
 		"pretty-quick": "^3.1.0",
 		"typescript": "^4.1.5"
 	},
-	"_moduleAliases": {
-		"@orm": "dist/lib/orm",
-		"@utils": "dist/lib/util",
-		"@lib": "dist/lib",
-		"@root": "dist"
-	},
 	"resolutions": {
 		"acorn": "^8.0.5",
 		"chalk": "^4.1.0",
@@ -85,7 +84,7 @@
 		"minimist": "^1.2.5"
 	},
 	"engines": {
-		"node": ">=14",
+		"node": ">=15",
 		"npm": ">=6"
 	},
 	"commitlint": {
@@ -100,5 +99,6 @@
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
-	}
+	},
+	"prettier": "@sapphire/prettier-config"
 }

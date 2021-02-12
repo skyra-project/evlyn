@@ -2,16 +2,6 @@ export const enum PreConditions {
 	OwnerOnly = 'OwnerOnly'
 }
 
-export const enum EvlynFormatters {
-	AndList = 'andList',
-	OrList = 'orList',
-	Permissions = 'permissions'
-}
-
-export const enum EvlynLanguages {
-	EnUs = 'en-US'
-}
-
 export const enum Permissions {
 	Administrator = 'administrator',
 	ViewAuditLog = 'viewAuditLog',

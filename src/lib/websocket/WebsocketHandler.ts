@@ -1,9 +1,9 @@
+import { EvlynClient } from '#lib/EvlynClient';
+import { EVLYN_PORT } from '#root/config';
 import Collection from '@discordjs/collection';
-import { EvlynClient } from '@lib/EvlynClient';
-import { EVLYN_PORT } from '@root/config';
 import { enumerable } from '@sapphire/decorators';
 import { green, red, yellow } from 'colorette';
-import { IncomingMessage } from 'http';
+import type { IncomingMessage } from 'http';
 import WebSocket, { Server } from 'ws';
 import { CloseCodes, WebsocketEvents } from './types';
 import WebsocketConsumer from './WebsocketConsumer';
@@ -45,7 +45,7 @@ export class WebsocketHandler {
 		console.log(`${green('[STAT-WS ]')} Ready to accept connections.`);
 	}
 
-	private handleLogError(ws: Server, error: Error) {
+	private handleLogError(_: Server, error: Error) {
 		throw `${red('[STAT-WS ]')} ${yellow('Failed to open the socket:')}\n${error.message || error.stack || 'Unknown error'}`;
 	}
 }
