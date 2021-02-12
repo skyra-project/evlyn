@@ -241,22 +241,22 @@
   resolved "https://registry.yarnpkg.com/@sapphire/eslint-config/-/eslint-config-2.1.1.tgz#c18217d00b4a0a8b62da24ebb9875d856d474510"
   integrity sha512-OoM2KYco1+HF+z/WjaAPhPhvEPGA8ddrn8ATLWvOvs4JiACRYbUGIMQrxRgb5afvEKIacLlGUKi/emZa8G9s+Q==
 
-"@sapphire/framework@^1.0.0-alpha.9":
-  version "1.0.0-alpha.9"
-  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0-alpha.9.tgz#168ec3c6e0c9b092bceb576934f634adbe6594fa"
-  integrity sha512-jJYM7/AFai6Nsx4YQTPc450Y80Ks81FQPowcsMBCnoOsYALGynmWtpAcRH5gcn8DXYOThJWGioDRjWkTX9BvlQ==
+"@sapphire/framework@^1.0.0-alpha.10":
+  version "1.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0-alpha.10.tgz#468cfb5f935209512e68e7b09bd69d570e468fc6"
+  integrity sha512-93lj4RWa5xjlB9GiJHV+KuHBsXLgZvH1sU2U6Whg5GVtD4tI5qze/i2YoewW9epNrQB4JVlfLFa9DFWIPTHEQQ==
   dependencies:
     "@sapphire/discord-utilities" "^2.0.1"
     "@sapphire/discord.js-utilities" "^1.4.0"
-    "@sapphire/pieces" "^1.2.1"
+    "@sapphire/pieces" "^1.2.2"
     "@sapphire/ratelimits" "^1.1.4"
     "@sapphire/utilities" "^1.4.4"
     lexure "^0.17.0"
 
-"@sapphire/pieces@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.1.tgz#ea43fae1e9377a9edca828411c3556d469f8e995"
-  integrity sha512-oObMXb8qHGDI8o+Ab1WbA1oN+ejbj9dHXGAZZ6HQ1QXU6XVyA2qRDDjz+F4YAZZuDNtb679FVuLL49bIz0YGiw==
+"@sapphire/pieces@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.2.tgz#d84c11348db21e717b3a5878f48258bb6a284ea9"
+  integrity sha512-DoY+kzTJiaeQDk5qmxaY2uOl6lLYHIFn6JUmHdTnsdhpkiDmE83AXB/ZEY/KRHpLq6kIw28TPnvtDIrW1U1Kzg==
   dependencies:
     "@discordjs/collection" "^0.1.6"
 
@@ -334,10 +334,10 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@^14.14.26":
-  version "14.14.26"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.26.tgz#e40df24c957568f350cca04e63bfb1e1556d1cbf"
-  integrity sha512-skWxepWOs+VArEBWd2S/VR3wUavioIIx9/HzW+UJiIjtwa6+kNXdsOeq7FfxDXf56hIcL0ieo2brwMgBJ1+lhw==
+"@types/node@*", "@types/node@^14.14.27":
+  version "14.14.27"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.27.tgz#c7127f8da0498993e13b1a42faf1303d3110d2f2"
+  integrity sha512-Ecfmo4YDQPwuqTCl1yBxLV5ihKfRlkBmzUEDcfIRvDxOTGQEeikr317Ln7Gcv0tjA8dVgKI3rniqW2G1OyKDng==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
