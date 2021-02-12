@@ -6,7 +6,8 @@ import { TaskStore } from './structures/TaskStore';
 import { ClientNames, MessageFromClientData } from './websocket/types';
 import { WebsocketHandler } from './websocket/WebsocketHandler';
 
-import '@scp/in17n/register';
+import '@skyra/editable-commands';
+import '@sapphire/plugin-logger/register';
 
 export class EvlynClient extends SapphireClient {
 	public statistics = {
