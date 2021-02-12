@@ -1,6 +1,6 @@
-import Collection from '@discordjs/collection';
 import { EvlynClient } from '#lib/EvlynClient';
 import { EVLYN_PORT } from '#root/config';
+import Collection from '@discordjs/collection';
 import { enumerable } from '@sapphire/decorators';
 import { green, red, yellow } from 'colorette';
 import type { IncomingMessage } from 'http';

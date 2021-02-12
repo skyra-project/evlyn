@@ -1,13 +1,13 @@
-import { Stopwatch } from '@sapphire/stopwatch';
-import { Type } from '@sapphire/type';
 import { PreConditions } from '#lib/types/Types';
+import { clean } from '#utils/clean';
+import { fetch, FetchMethods, FetchResultTypes } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';
+import { Stopwatch } from '@sapphire/stopwatch';
+import { Type } from '@sapphire/type';
 import { codeBlock, isThenable } from '@sapphire/utilities';
-import { clean } from '#utils/clean';
 import { Message, MessageAttachment } from 'discord.js';
 import { inspect } from 'util';
-import { fetch, FetchMethods, FetchResultTypes } from '#utils/util';
 
 @ApplyOptions<CommandOptions>({
 	aliases: ['ev'],

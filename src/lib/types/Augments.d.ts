@@ -1,4 +1,3 @@
-import type { TaskStore } from '#lib/structures/TaskStore';
 import type { ClientNames, MessageFromClientData } from '#lib/websocket/types';
 import type { WebsocketHandler } from '#lib/websocket/WebsocketHandler';
 
