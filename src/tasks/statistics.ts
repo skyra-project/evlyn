@@ -1,5 +1,5 @@
 import { Task } from '#lib/structures/Task';
-import { MessageFromServerAction } from '#lib/websocket/types';
+import { MessageFromServerAction } from '#lib/networking/websocket/types';
 import { Time } from '#utils/constants';
 
 export class ClientTask extends Task {

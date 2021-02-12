@@ -1,5 +1,5 @@
-import type { ClientNames, MessageFromClientData } from '#lib/websocket/types';
-import type { WebsocketHandler } from '#lib/websocket/WebsocketHandler';
+import type { ClientNames, MessageFromClientData } from '#lib/networking/websocket/types';
+import type { WebsocketHandler } from '#lib/networking/websocket/WebsocketHandler';
 
 declare module 'discord.js' {
 	interface ClientOptions {
