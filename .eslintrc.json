@@ -1,5 +1,5 @@
 {
-	"extends": ["@skyra", "plugin:prettier/recommended"],
+	"extends": "@sapphire",
 	"rules": {
 		"@typescript-eslint/no-throw-literal": 0,
 		"@typescript-eslint/restrict-plus-operands": 0,
