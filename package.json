@@ -85,7 +85,7 @@
 		"minimist": "^1.2.5"
 	},
 	"engines": {
-		"node": ">=14",
+		"node": ">=15",
 		"npm": ">=6"
 	},
 	"commitlint": {
