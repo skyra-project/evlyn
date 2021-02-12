@@ -55,7 +55,7 @@ export class DockerControl {
 	}
 
 	private static resolveHref(href: string): RequestOptions {
-		return this.resolveUrl(new URL(href));
+		return href.startsWith('/') ? { path: href } : this.resolveUrl(new URL(href));
 	}
 
 	private static resolveUrl(url: URL): RequestOptions {
