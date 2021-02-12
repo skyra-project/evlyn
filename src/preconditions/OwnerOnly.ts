@@ -4,6 +4,8 @@ import type { Message } from 'discord.js';
 
 export class ClientPrecondition extends Precondition {
 	public run(message: Message): Awaited<Result<unknown, UserError>> {
-		return message.author.id === OWNER_ID ? ok() : err(new UserError('ownerOnly', 'Only the owner is allowed to execute this command.'));
+		return message.author.id === OWNER_ID
+			? ok()
+			: err(new UserError({ identifier: 'ownerOnly', message: 'Only the owner is allowed to execute this command.' }));
 	}
 }

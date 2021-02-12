@@ -8,7 +8,6 @@ declare module 'discord.js' {
 	}
 
 	interface Client {
-		tasks: TaskStore;
 		statistics: Record<ClientNames, Collection<number, Omit<MessageFromClientData, 'name'>>>;
 		websocket: WebsocketHandler;
 	}
