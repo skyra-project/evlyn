@@ -3,6 +3,11 @@
 	"version": "3.0.0",
 	"description": "Monitor and Reviver",
 	"main": "dist/Evlyn.js",
+	"imports": {
+		"#lib/*": "./dist/lib/*.js",
+		"#root/*": "./dist/*.js",
+		"#utils/*": "./dist/lib/util/*.js"
+	},
 	"scripts": {
 		"docker:build": "yarn build && docker build -t skyrabot/evlyn .",
 		"docker:run": "docker run --rm -d -it --name evlyn skyrabot/evlyn",
@@ -70,12 +75,6 @@
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
 		"typescript": "^4.1.5"
-	},
-	"_moduleAliases": {
-		"@orm": "dist/lib/orm",
-		"@utils": "dist/lib/util",
-		"@lib": "dist/lib",
-		"@root": "dist"
 	},
 	"resolutions": {
 		"acorn": "^8.0.5",

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-invalid-this */
-import { PREFIX } from '@root/config';
+import { PREFIX } from '#root/config';
 import { SapphireClient } from '@sapphire/framework';
-import { list } from '@utils/language-functions';
+import { list } from '#utils/language-functions';
 import { ClientOptions, Collection } from 'discord.js';
 import i18next from 'i18next';
 import { TaskStore } from './structures/TaskStore';

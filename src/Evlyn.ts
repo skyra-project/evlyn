@@ -1,8 +1,7 @@
-import 'module-alias/register';
 import 'reflect-metadata';
-import '@utils/initClean';
-import { EvlynClient } from '@lib/EvlynClient';
-import { CLIENT_OPTIONS, TOKEN } from '@root/config';
+import '#utils/initClean';
+import { EvlynClient } from '#lib/EvlynClient';
+import { CLIENT_OPTIONS, TOKEN } from '#root/config';
 import { green, red, yellow } from 'colorette';
 import { inspect } from 'util';
 

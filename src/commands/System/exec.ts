@@ -1,9 +1,9 @@
-import { PreConditions } from '@lib/types/Types';
+import { PreConditions } from '#lib/types/Types';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';
 import { codeBlock } from '@sapphire/utilities';
-import { exec } from '@utils/exec';
-import { fetch, FetchMethods, FetchResultTypes } from '@utils/util';
+import { exec } from '#utils/exec';
+import { fetch, FetchMethods, FetchResultTypes } from '#utils/util';
 import { Message, MessageAttachment } from 'discord.js';
 
 @ApplyOptions<CommandOptions>({

@@ -1,6 +1,6 @@
-import { Task } from '@lib/structures/Task';
-import { MessageFromServerAction } from '@lib/websocket/types';
-import { Time } from '@utils/constants';
+import { Task } from '#lib/structures/Task';
+import { MessageFromServerAction } from '#lib/websocket/types';
+import { Time } from '#utils/constants';
 
 export class ClientTask extends Task {
 	// eslint-disable-next-line @typescript-eslint/no-invalid-this

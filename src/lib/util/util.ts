@@ -1,7 +1,7 @@
-import { FetchError } from '@lib/errors/FetchError';
+import { FetchError } from '#lib/errors/FetchError';
 import { Events } from '@sapphire/framework';
 import { isThenable } from '@sapphire/utilities';
-import { Client } from 'discord.js';
+import type { Client } from 'discord.js';
 import nodeFetch, { RequestInit, Response } from 'node-fetch';
 
 export function removeFirstAndAdd<T>(array: Array<T>, value: T): Array<T> {

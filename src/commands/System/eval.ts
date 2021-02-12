@@ -1,11 +1,11 @@
-import { Stopwatch } from '@klasa/stopwatch';
-import { Type } from '@klasa/type';
-import { PreConditions } from '@lib/types/Types';
+import { Stopwatch } from '@sapphire/stopwatch';
+import { Type } from '@sapphire/type';
+import { PreConditions } from '#lib/types/Types';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';
 import { codeBlock, isThenable } from '@sapphire/utilities';
-import { clean } from '@utils/clean';
-import { Message } from 'discord.js';
+import { clean } from '#utils/clean';
+import type { Message } from 'discord.js';
 import { inspect } from 'util';
 
 @ApplyOptions<CommandOptions>({
