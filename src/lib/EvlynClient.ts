@@ -3,8 +3,8 @@ import { PREFIX } from '#root/config';
 import { SapphireClient } from '@sapphire/framework';
 import { ClientOptions, Collection } from 'discord.js';
 import { TaskStore } from './structures/TaskStore';
-import { ClientNames, MessageFromClientData } from './websocket/types';
-import { WebsocketHandler } from './websocket/WebsocketHandler';
+import { ClientNames, MessageFromClientData } from './networking/websocket/types';
+import { WebsocketHandler } from './networking/websocket/WebsocketHandler';
 
 import '@sapphire/plugin-logger/register';
 import '@skyra/editable-commands';
