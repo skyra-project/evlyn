@@ -22,7 +22,7 @@
 		"clean": "tsc -b src --clean",
 		"watch": "tsc -b src -w",
 		"dev": "yarn build && yarn start",
-		"postinstall": "husky install .github/husky"
+		"prepare": "husky install .github/husky"
 	},
 	"repository": {
 		"type": "git",
