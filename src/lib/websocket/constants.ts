@@ -1,4 +1,4 @@
-import { PresenceStatus } from 'discord.js';
+import type { PresenceStatus } from 'discord.js';
 
 export const enum ClientNames {
 	Aelia = 'aelia',

@@ -1,7 +1,10 @@
 import { Task } from '#lib/structures/Task';
-import { MessageFromServerAction } from '#lib/websocket/types';
+import { MessageFromServerAction } from '#lib/websocket/constants';
 import { Time } from '#utils/constants';
+import { ApplyOptions } from '@sapphire/decorators';
+import type { PieceOptions } from '@sapphire/pieces';
 
+@ApplyOptions<PieceOptions>({ enabled: process.env.NODE_ENV !== 'production' })
 export class ClientTask extends Task {
 	// eslint-disable-next-line @typescript-eslint/no-invalid-this
 	private _interval: NodeJS.Timer | null = this.create();
@@ -14,14 +17,9 @@ export class ClientTask extends Task {
 		}
 	}
 
-	// eslint-disable-next-line @typescript-eslint/require-await
 	public onLoad() {
-		if (this.context.client.options.dev) {
-			this.store.unload(this);
-		} else {
-			super.onLoad();
-			if (!this._interval) this._interval = this.create();
-		}
+		if (!this._interval) this._interval = this.create();
+		return super.onLoad();
 	}
 
 	public onUnload() {

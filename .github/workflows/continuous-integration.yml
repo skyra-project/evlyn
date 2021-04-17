@@ -71,10 +71,5 @@ jobs:
           key: ${{ runner.os }}-15-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         run: yarn --ignore-scripts --frozen-lockfile
-      - name: Copy Configuration
-        run: |
-          pushd src &&
-          cp config.example.ts config.ts &&
-          popd
       - name: Build Code
         run: yarn build

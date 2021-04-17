@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/no-invalid-this */
-import { PREFIX } from '#root/config';
+import { CLIENT_OPTIONS } from '#root/config';
 import { SapphireClient } from '@sapphire/framework';
-import { ClientOptions, Collection } from 'discord.js';
+import { Collection } from 'discord.js';
 import { TaskStore } from './structures/TaskStore';
-import { ClientNames, MessageFromClientData } from './websocket/types';
+import { ClientNames, MessageFromClientData } from './websocket/constants';
 import { WebsocketHandler } from './websocket/WebsocketHandler';
-
-import '@sapphire/plugin-logger/register';
-import '@skyra/editable-commands';
 
 export class EvlynClient extends SapphireClient {
 	public statistics = {
@@ -19,13 +15,8 @@ export class EvlynClient extends SapphireClient {
 
 	public websocket = new WebsocketHandler(this);
 
-	public constructor({ dev = false, ...options }: ClientOptions) {
-		super({
-			...options,
-			dev
-		});
+	public constructor() {
+		super(CLIENT_OPTIONS);
 		this.stores.register(new TaskStore());
 	}
-
-	public fetchPrefix = () => PREFIX;
 }

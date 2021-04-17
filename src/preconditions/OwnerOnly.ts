@@ -1,11 +1,9 @@
-import { OWNER_ID } from '#root/config';
-import { Awaited, err, ok, Precondition, Result, UserError } from '@sapphire/framework';
+import { OWNERS } from '#root/config';
+import { Precondition, PreconditionResult } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 export class ClientPrecondition extends Precondition {
-	public run(message: Message): Awaited<Result<unknown, UserError>> {
-		return message.author.id === OWNER_ID
-			? ok()
-			: err(new UserError({ identifier: 'ownerOnly', message: 'Only the owner is allowed to execute this command.' }));
+	public run(message: Message): PreconditionResult {
+		return OWNERS.includes(message.author.id) ? this.ok() : this.error({ context: { silent: true } });
 	}
 }

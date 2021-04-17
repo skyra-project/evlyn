@@ -1,4 +1,4 @@
-import { PreConditions } from '#lib/types/Types';
+import { PreConditions } from '#lib/types/constants';
 import { exec } from '#utils/exec';
 import { fetch, FetchMethods, FetchResultTypes } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';

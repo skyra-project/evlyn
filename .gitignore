@@ -5,9 +5,6 @@ node_modules/
 # Ignore bwd folders
 dist/bwd/
 
-# Ignore the config file (contains sensitive information such as tokens)
-config.ts
-
 # Ignore the dist output
 dist/
 
@@ -18,3 +15,8 @@ dist/
 # Ignore package locks
 package-lock.json
 
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
