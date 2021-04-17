@@ -42,10 +42,10 @@ export class WebsocketHandler {
 	}
 
 	private handleLogListening() {
-		console.log(`${green('[STAT-WS ]')} Ready to accept connections.`);
+		this.client.logger.info(`${green('STAT-WS')} - Ready to accept connections.`);
 	}
 
 	private handleLogError(_: Server, error: Error) {
-		throw `${red('[STAT-WS ]')} ${yellow('Failed to open the socket:')}\n${error.message || error.stack || 'Unknown error'}`;
+		throw `${red('STAT-WS')} - ${yellow('Failed to open the socket:')}\n${error.message || error.stack || 'Unknown error'}`;
 	}
 }

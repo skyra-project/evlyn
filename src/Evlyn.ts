@@ -1,21 +1,17 @@
-import '#lib/setup';
 import { EvlynClient } from '#lib/EvlynClient';
+import '#lib/setup';
 import { green, red, yellow } from 'colorette';
 
-async function main() {
-	const client = new EvlynClient();
+const client = new EvlynClient();
 
+async function main() {
 	try {
-		await client
-			.login()
-			.then(() => console.log(`${green('[WS  ]')} Successfully logged in.`))
-			.catch((error) => {
-				throw `${red('[WS  ]')} ${yellow('Failed to login to Discord:')}\n${error}`;
-			});
+		await client.login();
+		client.logger.info(`${green('WS     ')} - Successfully logged in.`);
 	} catch (error) {
 		client.destroy();
-		throw error;
+		throw `${red('WS     ')} - ${yellow('Failed to login to Discord:')}\n${error}`;
 	}
 }
 
-main().catch(console.error);
+main().catch(client.logger.error.bind(client.logger));
