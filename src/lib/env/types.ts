@@ -22,5 +22,8 @@ export interface EvlynEnv {
 
 	WEBSOCKET_PORT: IntegerString;
 
+	STATE_MACHINE_ENABLED: BooleanString;
+	STATE_MACHINE_TIMEOUT: IntegerString;
+
 	DISCORD_TOKEN: string;
 }
