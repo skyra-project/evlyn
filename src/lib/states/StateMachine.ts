@@ -5,7 +5,8 @@ import { noOperation } from './behaviors/NoOperation';
 import { Node } from './Node';
 
 export class StateMachine {
-	private current: Node<unknown> = this.create(noOperation);
+	public readonly initial: Node<unknown> = this.create(noOperation);
+	private current: Node<unknown> = this.initial;
 	private timer: NodeJS.Timeout | null = null;
 
 	public setCurrent<T>(node: Node<T>) {
