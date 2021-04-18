@@ -1,5 +1,5 @@
-import { PreConditions } from '#lib/types/Types';
-import { clean } from '#utils/clean';
+import { PreConditions } from '#lib/types/constants';
+import { clean } from '#utils/sanitizer/clean';
 import { fetch, FetchMethods, FetchResultTypes } from '#utils/util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';

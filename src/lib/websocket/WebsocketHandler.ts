@@ -1,11 +1,11 @@
+import { envParseInteger } from '#lib/env';
 import { EvlynClient } from '#lib/EvlynClient';
-import { EVLYN_PORT } from '#root/config';
 import Collection from '@discordjs/collection';
 import { enumerable } from '@sapphire/decorators';
 import { green, red, yellow } from 'colorette';
 import type { IncomingMessage } from 'http';
 import WebSocket, { Server } from 'ws';
-import { CloseCodes, WebsocketEvents } from './types';
+import { CloseCodes, WebsocketEvents } from './constants';
 import WebsocketConsumer from './WebsocketConsumer';
 
 export class WebsocketHandler {
@@ -17,7 +17,7 @@ export class WebsocketHandler {
 
 	public constructor(client: EvlynClient) {
 		this.client = client;
-		this.wss = new Server({ port: EVLYN_PORT });
+		this.wss = new Server({ port: envParseInteger('WEBSOCKET_PORT') });
 
 		this.wss.once(WebsocketEvents.Listening, this.handleLogListening.bind(this));
 		this.wss.on(WebsocketEvents.Error, this.handleLogError.bind(this));
@@ -42,10 +42,10 @@ export class WebsocketHandler {
 	}
 
 	private handleLogListening() {
-		console.log(`${green('[STAT-WS ]')} Ready to accept connections.`);
+		this.client.logger.info(`${green('STAT-WS')} - Ready to accept connections.`);
 	}
 
 	private handleLogError(_: Server, error: Error) {
-		throw `${red('[STAT-WS ]')} ${yellow('Failed to open the socket:')}\n${error.message || error.stack || 'Unknown error'}`;
+		throw `${red('STAT-WS')} - ${yellow('Failed to open the socket:')}\n${error.message || error.stack || 'Unknown error'}`;
 	}
 }

@@ -18,7 +18,7 @@ in your text editor or IDE of your choice to ensure builds from GitHub Actions d
 To run Evlyn locally a few steps should be taken.
 
 1. Install [Node.JS], [Yarn] and [Docker]
-1. Copy and paste the [`config.example.ts`] file in the `src` directory and rename it to `config.ts`.
+1. Copy and paste the [`.env.development`] file in the `src` directory and rename it to `.env.development.local`.
 1. Scroll down to `export const TOKENS = ` and fill in your bot token
 1. Follow the [installation instructions for node-canvas][] for your platfor
     - Note: In case of using WSL then follow the Windows instructions
@@ -39,7 +39,7 @@ $ yarn start
 
 There are a number of guidelines considered when reviewing Pull Requests to be merged. _This is by no means an exhaustive list, but here are some things to consider before/while submitting your ideas._
 
--   Evlyn should never change klasa's or discordjs's default behavior. Evlyn should only add to Klasa and discord.js, and be as consistent as possible with them.
+-   Evlyn should never change Sapphire's or Discord.js's default behavior. Evlyn should only add to Sapphire and discord.js, and be as consistent as possible with them.
 -   Everything in Evlyn should be generally useful for the majority of users. Don't let that stop you if you've got a good concept though, as your idea still might be a great addition.
 -   Everything should be shard compliant. If code you put in a pull request would break when sharding, break other things from supporting sharding, or is incompatible with sharding; then you will need to think of a way to make it work with sharding in mind before the pull request will be accepted and merged.
 -   Everything should follow [OOP paradigms] and generally rely on behaviour over state where possible. This generally helps methods be predictable, keeps the codebase simple and understandable, reduces code duplication through abstraction, and leads to efficiency and therefore scalability.
@@ -58,6 +58,6 @@ There are a number of guidelines considered when reviewing Pull Requests to be m
 [installation instructions for node-canvas]: https://github.com/Automattic/node-canvas/blob/main/Readme.md#installation
 [oop paradigms]: https://en.wikipedia.org/wiki/Object-oriented_programming
 [discord bot best practices]: https://github.com/meew0/discord-bot-best-practices
-[`config.example.ts`]: /src/config.example.ts
+[`.env.development`]: /src/.env.development
 [scripts]: /scripts
 [the repository wiki]: https://github.com/skyra-project/skyra/wikib

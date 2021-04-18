@@ -5,6 +5,8 @@
 	"main": "dist/Evlyn.js",
 	"imports": {
 		"#lib/*": "./dist/lib/*.js",
+		"#lib/env": "./dist/lib/env/index.js",
+		"#lib/setup": "./dist/lib/setup/index.js",
 		"#root/*": "./dist/*.js",
 		"#utils/*": "./dist/lib/util/*.js"
 	},
@@ -50,6 +52,7 @@
 		"@skyra/editable-commands": "^1.0.0",
 		"colorette": "^1.2.2",
 		"discord.js": "^12.5.1",
+		"dotenv-cra": "^2.0.2",
 		"node-fetch": "^2.6.1",
 		"reflect-metadata": "^0.1.13",
 		"ws": "^7.4.3",
