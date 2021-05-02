@@ -1,8 +1,5 @@
 # Evlyn [![Discord](https://discordapp.com/api/guilds/254360814063058944/embed.png)](https://join.skyra.pw)
 
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/kyranet/Evlyn.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kyranet/Evlyn/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/kyranet/Evlyn.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kyranet/Evlyn/context:javascript)
-
 Evlyn is a private Discord Bot for data retrieval and monitoring.
 
 ## Development Requirements
