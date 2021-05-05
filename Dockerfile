@@ -1,16 +1,18 @@
-FROM node:15-alpine
+FROM --platform=linux/amd64 node:16-alpine
 
 WORKDIR /usr/src/app
 
 RUN apk add --no-cache \
 	build-base \
+	dumb-init \
 	python
 
-COPY package.json ./
-COPY yarn.lock ./
+COPY --chown=node:node package.json ./
+COPY --chown=node:node yarn.lock ./
+COPY --chown=node:node dist/ dist/
 
 RUN yarn install --frozen-lockfile --link-duplicates
 
-COPY dist/ dist/
+USER node
 
-CMD ["yarn", "start"]
+CMD [ "dumb-init", "yarn", "start" ]
