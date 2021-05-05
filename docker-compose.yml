@@ -1,0 +1,16 @@
+version: '2.4'
+services:
+  evlyn:
+    build: ./
+    container_name: evlyn
+    env_file:
+      - src/.env.production.local
+    image: 'skyrabot/evlyn:latest'
+    networks:
+      - evlyn
+    ports:
+      - '9997:9997'
+    restart: always
+
+networks:
+  evlyn:
