@@ -55,7 +55,7 @@
 		"dotenv-cra": "^2.0.2",
 		"node-fetch": "^2.6.1",
 		"reflect-metadata": "^0.1.13",
-		"ws": "^7.4.5",
+		"ws": "^7.4.6",
 		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
