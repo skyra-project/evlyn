@@ -80,6 +80,7 @@
 		"fs-nextra": "^0.5.1",
 		"lodash": "^4.17.21",
 		"minimist": "^1.2.5",
+		"tar": "^6.1.6",
 		"trim-newlines": "^3.0.1"
 	},
 	"engines": {
