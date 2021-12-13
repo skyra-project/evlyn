@@ -8,7 +8,7 @@ export class FetchError extends Error {
 	public readonly code: number;
 	/** The response returned as a string. */
 	public readonly response: string;
-	// eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
+
 	#json: unknown;
 
 	public constructor(url: string, code: number, response: string) {
