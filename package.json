@@ -19,7 +19,7 @@
 		"docker:dev": "yarn docker:build && yarn docker:run && yarn docker:logs",
 		"start": "node dist/Evlyn.js",
 		"lint": "eslint --ext ts src --fix",
-		"update": "yarn upgrade-interactive --latest",
+		"update": "yarn up \"@*/*\" -i && yarn up \"*\" -i",
 		"build": "tsc -b src",
 		"clean": "tsc -b src --clean",
 		"watch": "tsc -b src -w",
@@ -74,7 +74,6 @@
 		"typescript": "^4.4.3"
 	},
 	"resolutions": {
-		"acorn": "^8.5.0",
 		"fs-nextra": "^0.5.1"
 	},
 	"engines": {
@@ -94,5 +93,6 @@
 			"path": "./node_modules/cz-conventional-changelog"
 		}
 	},
-	"prettier": "@sapphire/prettier-config"
+	"prettier": "@sapphire/prettier-config",
+	"packageManager": "yarn@3.2.0"
 }
