@@ -74,7 +74,9 @@
 		"typescript": "^4.4.3"
 	},
 	"resolutions": {
-		"fs-nextra": "^0.5.1"
+		"fs-nextra": "^0.5.1",
+		"ansi-regex": "^5.0.1",
+		"minimist": "^1.2.6"
 	},
 	"engines": {
 		"node": ">=15",
