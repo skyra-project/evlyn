@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { Time } from '#utils/constants';
 // @ts-expect-error This import is never used as a value and must use 'import type' because 'importsNotUsedAsValues' is set to 'error'. ts(1371)
 import WebSocket, { Data } from 'ws';
