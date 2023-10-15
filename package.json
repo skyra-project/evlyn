@@ -23,8 +23,7 @@
 		"build": "tsc -b src",
 		"clean": "tsc -b src --clean",
 		"watch": "tsc -b src -w",
-		"dev": "yarn build && yarn start",
-		"postinstall": "husky install .github/husky"
+		"dev": "yarn build && yarn start"
 	},
 	"repository": {
 		"type": "git",
@@ -67,7 +66,6 @@
 		"@types/node": "^16.10.3",
 		"@types/node-fetch": "^2.5.10",
 		"@types/ws": "^8.2.0",
-		"husky": "^7.0.2",
 		"lint-staged": "^11.2.3",
 		"prettier": "^2.4.1",
 		"pretty-quick": "^3.1.1",
