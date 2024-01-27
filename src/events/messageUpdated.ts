@@ -1,7 +1,7 @@
 import { Event, Events } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
-export class UserEvent extends Event {
+export class UserEvent extends Event<Events.MessageUpdate> {
 	public run(old: Message, message: Message) {
 		// If the contents of both messages are the same, return:
 		if (old.content === message.content) return;

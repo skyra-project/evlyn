@@ -1,5 +1,6 @@
 import { CLIENT_OPTIONS } from '#root/config';
 import { SapphireClient } from '@sapphire/framework';
+import { PieceContextExtras, Store } from '@sapphire/pieces';
 import { Collection } from 'discord.js';
 import { TaskStore } from './structures/TaskStore';
 import { ClientNames, MessageFromClientData } from './websocket/constants';
@@ -18,5 +19,14 @@ export class EvlynClient extends SapphireClient {
 	public constructor() {
 		super(CLIENT_OPTIONS);
 		this.stores.register(new TaskStore());
+	}
+
+	public get context(): PieceContextExtras {
+		return Store.injectedContext;
+	}
+
+	public destroy() {
+		this.context.states.destroy();
+		return super.destroy();
 	}
 }
